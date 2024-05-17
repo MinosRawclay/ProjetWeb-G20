@@ -3,8 +3,19 @@
 include_once "maLibSQL.pdo.php";
 
 /*
-Dans ce fichier, on définit diverses fonctions permettant de récupérer des données utiles pour notre TP d'identification. Deux parties sont à compléter, en suivant les indications données dans le support de TP
-*/
+Nouvellees fonctions*/
+
+function listerTexturePack() {
+	$sql = "
+    SELECT *
+    FROM texture ";
+
+  return parcoursRs(SQLSelect($sql));
+}
+
+
+
+
 
 
 /********* PARTIE 1 : prise en main de la base de données *********/

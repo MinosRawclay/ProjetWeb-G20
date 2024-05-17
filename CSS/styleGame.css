@@ -1,0 +1,78 @@
+
+/*Fichier CSS de la page de jeu*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div#affichage {
+    
+    display: flex;
+    height: 90%;
+    width: 100%;
+    
+}
+
+div#select {
+    
+    display: flex;
+    height: 10%;
+    width: 100%;
+
+    justify-content: center;
+    align-content: center;
+    
+}
+
+
+img.right {
+
+
+    position: absolute;
+    
+    left: 68%;
+    transform: scaleX(-1); /*effet miroir*/
+    height: 80%;
+    width: 27%;
+}
+
+img.left {
+    position: absolute;
+
+    left: 5%;
+    height: 80%;
+    width: 27%;
+}
+
+/*IFRAME*/
+iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 80%;
+    border: 2px solid #000000;
+}
+
+#gameWindow {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+}
+
+#perso{
+    height: 15%;
+    width: 10%;
+    background-color: blue;
+    position: relative;
+}
+
+.perso img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
