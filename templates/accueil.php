@@ -14,7 +14,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	die("");
 }
 
- print_r($_SESSION);
+//  print_r($_SESSION);
 
 
 
@@ -49,12 +49,16 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
 <div class="affichage">
   <?php 
-  $pseudo = valider("pseudo");
-  print_r($pseudo);
+  //  echo "test0--";
+  $pseudo = valider("pseudo","SESSION");
+  // echo $pseudo;
+  // echo "test1--";
   $amis = listerAmis($pseudo);
-  print_r($amis);
+  // print_r($amis);
+  // echo "test2--";
+
   foreach ($amis as $ami) {
-    echo "<p class='ami'>". $ami["pseudo"] ."</p>";  
+    echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
   }
 
   ?>

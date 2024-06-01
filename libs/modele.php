@@ -94,7 +94,7 @@ function AccepterDemandeAmi($pseudoAmi, $pseudo)  {
 		echo "ERROR !";
  	}	
   	else {
-		echo "Demande Accepter";
+		echo "Demande Acceptée";
 	   
 		// On actualise la l'etat de la demande d'ami
 		$sql = "UPDATE ami SET accepte = 1 WHERE ami.pseudo = '$pseudo' AND ami.pseudo_ami = '$pseudoAmi'";

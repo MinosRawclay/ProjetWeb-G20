@@ -81,8 +81,42 @@ session_start();
 				}
 			break;
 
+			case 'demande_ami' :
+				if ($loginami = valider("login")) EnvoyerDemandeAmi($loginami, valider("pseudo","SESSION"));
+				$addArgs = "?view=amis";
+			break;
 
+			case 'accepterDemandeAmi' :
+				if ($loginami = valider("pseudoAmi")) {
+					AccepterDemandeAmi($loginami, valider("pseudo","SESSION"));
+				}
+				
+				$addArgs = "?view=amis";
+			break;	
 
+			case 'refuserDemandeAmi':
+				if ($loginami = valider("pseudoAmi")) {
+					refuserDemandeAmi($loginami, valider("pseudo","SESSION"));
+				}
+				
+				$addArgs = "?view=amis";
+			break;
+		
+			case 'retirerAmi' :
+				if ($loginami = valider("pseudoAmi")) {
+					retirerAmi($loginami, valider("pseudo","SESSION"));
+				}
+				
+				$addArgs = "?view=amis";
+			break;	
+
+			case 'bloqueAmi':
+				if ($loginami = valider("pseudoAmi")) {
+					BloqueAmi($loginami, valider("pseudo","SESSION"));
+				}
+				
+				$addArgs = "?view=amis";
+			break;
 		}
 
 	}

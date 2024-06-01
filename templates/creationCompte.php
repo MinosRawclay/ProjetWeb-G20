@@ -31,7 +31,7 @@ if ($checked = valider("remember", "COOKIE")) $checked = "checked";
   </div>
   <div class="form-group">
     <label for="pwd">Vérification du Mot de Passe</label>
-    <input type="password" class="form-control" id="pwdverif" name="passeverfi" value="">
+    <input type="password" class="form-control" id="pwdverif" name="passeverif" value="">
   </div>
   <div class="checkbox">
     <label><input type="checkbox" name="remember" <?php echo $checked;?> >Se souvenir de moi</label>

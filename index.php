@@ -14,7 +14,7 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	include_once "libs/maLibBootstrap.php";
 	include_once "libs/maLibSecurisation.php";
 
-
+	
 
 	// on récupère le paramètre view éventuel 
 	$view = valider("view"); 
@@ -75,6 +75,9 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 		
 
 	}
+
+	
+
 
 
 	// Dans tous les cas, on affiche le pied de page
