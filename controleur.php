@@ -82,7 +82,7 @@ session_start();
 			break;
 
 			case 'demande_ami' :
-				if ($loginami = valider("login")) EnvoyerDemandeAmi($loginami, valider("pseudo","SESSION"));
+				if ($loginami = valider("login")) EnvoyerDemandeAmi(valider("pseudo","SESSION"), $loginami);
 				$addArgs = "?view=amis";
 			break;
 

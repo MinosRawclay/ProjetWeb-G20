@@ -159,4 +159,19 @@ function ajouter_joueur($pseudo, $mdp){
 	$SQL = "INSERT INTO joueur VALUES ('$pseudo', '$mdp');";
 	return SQLInsert($SQL);
 }
+
+function Niv(){
+	$sql = 'SELECT * FROM annuaireNiveau WHERE campagne=1;';
+	return parcoursRs(SQLSelect($sql));
+}
+
+function pb($pseudo, $niveau){
+	$SQL = "SELECT temps FROM run JOIN annuaireNiveau ON idNiveau = id_niveau WHERE pseudo = '$pseudo' AND Nom = '$niveau';";
+	return parcoursRs(SQLSelect($SQL));
+}
+
+function nbrNiv(){
+	$sql = 'SELECT COUNT(*) FROM annuaireNiveau WHERE campagne=1;';
+	return parcoursRs(SQLSelect($sql));
+}
 ?>
