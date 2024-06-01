@@ -47,7 +47,7 @@ CREATE TABLE run (
     commandes VARCHAR(1000),
 PRIMARY KEY (pseudo, id_niveau),
 FOREIGN KEY (pseudo) REFERENCES joueur(pseudo),
-FOREIGN KEY (id_niveau) REFERENCES niveau(id)
+FOREIGN KEY (id_niveau) REFERENCES annuaireNiveau(idNiveau)
 );
 
 CREATE TABLE ami(
@@ -62,17 +62,16 @@ FOREIGN KEY (pseudo_ami ) REFERENCES joueur(pseudo)
 
 
 
---Exemple de création de table “niveau”
-CREATE TABLE niveau (
+
+CREATE TABLE niveauTest (
 	idElement INTEGER,
-	numEleNiv INTEGER,  NOT NULL
-	TypeEle INTEGER,  NOT NULL
-	Xpos INTEGER, NOT NULL
-	Ypos INTEGER, NOT NULL
-PRIMARY KEY (idElement),
+	TypeEle INTEGER  NOT NULL,
+	Xpos INTEGER NOT NULL,
+	Ypos INTEGER NOT NULL,
+PRIMARY KEY (idElement)
 );
 
--- Insertion des valeur necessaire 
+
 INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('default', 'default');
 INSERT INTO `texture` (`nom`, `createur`, `plateforme1`, `plateforme2`, `monstre1`, `monstre2`, `trampoline`, `casquette`, `bombe`, `fond`, `perso`) 
 VALUES ('default', 'default', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

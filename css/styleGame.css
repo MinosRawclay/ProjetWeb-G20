@@ -1,0 +1,204 @@
+
+/*Fichier CSS de la page de jeu*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div#popupGameDeath {
+    
+    display: none;
+    position: absolute;
+
+    top : 30%;
+    left: 29%;
+
+    height: 25%;
+    width: 20%;
+
+    justify-content: center;
+    align-content: center;
+
+    background-color: aliceblue;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    border-radius: 3rem;
+    
+    border: 1rem solid #32a1ce;
+}
+
+div#popupGameDeath input {
+
+    position: absolute;
+
+    top : 40%;
+    left: 40%;
+
+    height: 25%;
+    width: 20%;
+
+    color: black;
+
+    background: #32a1ce;
+    border: #32a1ce;
+    border-radius: 3rem;
+
+}
+
+
+
+div#affichage {
+    
+    display: flex;
+    height: 90%;
+    width: 100%;
+    
+}
+
+div#select {
+    
+    display: flex;
+    height: 10%;
+    width: 100%;
+
+    justify-content: center;
+    align-content: center;
+    
+}
+
+
+img.right {
+
+
+    position: absolute;
+    
+    left: 68%;
+    transform: scaleX(-1); /*effet miroir*/
+    height: 80%;
+    width: 27%;
+}
+
+img.left {
+    position: absolute;
+
+    left: 5%;
+    height: 80%;
+    width: 27%;
+}
+
+/*------------------------IFRAME-------------------*/
+iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 80%;
+    border: 2px solid #000000;
+}
+
+
+
+
+
+#gameWindow {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    position: relative;
+    /* background-image: url('image.png'); Chemin de l'image */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    background-size: cover; /* Adapte la taille de l'image pour couvrir toute la page */
+    background-position: center; /* Centre l'image */
+}
+
+#perso{
+    height: 10%;
+    width: 10%;
+    background-color: blue;
+    position: absolute;
+    
+}
+
+#perso img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+div.GameImgHolder > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#StartIMG {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(3, 3, 58);
+}
+
+#StartIMG > input {
+    position: absolute;
+    height: 10%;
+    width: 20%;
+    
+    bottom: 45%;
+    left: 40%;
+}
+
+.plateforme1{
+    height: 5%;
+    width: 10%;
+    background-color: rgb(31, 129, 20);
+    position: absolute;
+}
+
+.plateforme2{
+    height: 5%;
+    width: 10%;
+    background-color: rgb(26, 37, 25);
+    position: absolute;
+}
+
+.monstre1{
+    height: 10%;
+    width: 10%;
+    background-color: rgb(180, 61, 61);
+    position: absolute;
+}
+
+.monstre2{
+    height: 10%;
+    width: 10%;
+    background-color: rgb(81, 16, 16);
+    position: absolute;
+}
+
+.bombe{
+    height: 10%;
+    width: 10%;
+    background-color: rgb(116, 122, 136);
+    position: absolute;
+}
+
+.casquette{
+    height: 10%;
+    width: 10%;
+    background-color: rgb(158, 166, 67);
+    position: absolute;
+}
+
+.trampoline{
+    height: 5%;
+    width: 10%;
+    background-color: rgb(150, 54, 160);
+    position: absolute;
+}

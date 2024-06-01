@@ -1,0 +1,50 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 80%;
+    border: 2px solid #000000;
+}
+
+.draggable {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    background: white;
+  }
+
+  .dropzone {
+    width: 10%;
+    height: 90%;
+    background: blueviolet;
+  
+    border: solid #000000;
+  }
+
+  .ligne {
+    width: 100%;
+    height: 10%;
+    display: flex;
+
+    align-content: center;
+
+  }
+
+  #trashCan{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 15%;
+    width: 15%;
+    background-color: aliceblue;
+  }

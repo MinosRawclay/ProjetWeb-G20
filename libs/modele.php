@@ -1,9 +1,27 @@
 <?php
 
-include_once "maLibSQL.pdo.php";
 
-/*
-Nouvellees fonctions*/
+// inclure ici la librairie faciliant les requêtes SQL
+include_once("maLibSQL.pdo.php");
+
+
+function listerUtilisateurs($classe = "both")
+{
+	// NB : la présence du symbole '=' indique la valeur par défaut du paramètre s'il n'est pas fourni
+	// Cette fonction liste les utilisateurs de la base de données 
+	// et renvoie un tableau d'enregistrements. 
+	// Chaque enregistrement est un tableau associatif contenant les champs 
+	// id,pseudo,blacklist,connecte,couleur
+
+	// Lorsque la variable $classe vaut "both", elle renvoie tous les utilisateurs
+	// Lorsqu'elle vaut "bl", elle ne renvoie que les utilisateurs blacklistés
+	// Lorsqu'elle vaut "nbl", elle ne renvoie que les utilisateurs non blacklistés
+
+	$SQL = "select * from joueur";
+	// echo $SQL;
+	return parcoursRs(SQLSelect($SQL));
+
+}
 
 function listerTexturePack() {
 	$sql = "
@@ -13,65 +31,115 @@ function listerTexturePack() {
   return parcoursRs(SQLSelect($sql));
 }
 
+function listerNiveau($nomNiveau){
+	$sql = '
+	SELECT * FROM `niveauTest`  ';
+	return parcoursRs(SQLSelect($sql));
+}
+
+function listerAmis($pseudo){
+	$sql = 'SELECT * FROM `ami` WHERE ami.bloque = 0 AND ami.accepte = 1 AND ami.pseudo = "'.$pseudo.'";';
+	return parcoursRs(SQLSelect($sql));
+}
+
+function listerAmisBloque($pseudo){
+	$sql = 'SELECT * FROM `ami` WHERE ami.bloque = 1 AND ami.pseudo = "'.$pseudo.'";';
+	return parcoursRs(SQLSelect($sql));
+}
+
+function listerDemandesAmis($pseudo){
+	$sql = 'SELECT * FROM `ami` WHERE ami.bloque = 0 AND ami.accepte = 0 AND ami.pseudo = "'.$pseudo.'";';
+	return parcoursRs(SQLSelect($sql));
+}
 
 
+/********
+ *  $pseudoAmi est le pseudo de la personne qui fait la demande d'amis, $pseudo la personne qui recoit la demande d'ami
+ ********/
+function EnvoyerDemandeAmi($pseudoAmi, $pseudo)  {
+	
+	// On cherche si on n'a pas deja recu de demande de la part de la persone	
+	$sql = 'SELECT * FROM `ami` WHERE ami.pseudo_ami = "'.$pseudo.'" AND ami.pseudo = "'.$pseudoAmi.'";';
+	$val = parcoursRs(SQLSelect($sql)) ;
 
+	// On cherche si on n'a pas deja envoyer de demande
+	$sql = 'SELECT * FROM `ami` WHERE ami.pseudo_ami = "'.$pseudoAmi.'" AND ami.pseudo = "'.$pseudo.'";';
+	$val2 = parcoursRs(SQLSelect($sql));
 
-
-/********* PARTIE 1 : prise en main de la base de données *********/
-
-
-// inclure ici la librairie faciliant les requêtes SQL
-
-
-function listerUtilisateurs($classe = "both")
-{
-	// Cette fonction liste les utilisateurs de la base de données 
-	// et renvoie un tableau d'enregistrements. 
-	// Chaque enregistrement est un tableau associatif contenant les champs 
-	// id,pseudo,blacklist,connecte,couleur
-
-	// Lorsque la variable $classe vaut "both", elle renvoie tous les utilisateurs
-	// Lorsqu'elle vaut "bl", elle ne renvoie que les utilisateurs blacklistés
-	// Lorsqu'elle vaut "nbl", elle ne renvoie que les utilisateurs non blacklistés
-	$etat_blacklist = ";";
-	if ($classe == "bl") {
-	  $etat_blacklist = "WHERE blacklist;";
+	// print_r($val); print_r($val2);
+		
+	if ((isset($val[0]) || isset($val2[0]))) {
+		 echo "Demande Deja envoyer !";
+	}	
+	else {
+		 echo "Demande en cours d'envoi";
+		
+		$sql = "INSERT INTO `ami` (`pseudo`, `pseudo_ami`, `bloque`, `accepte`) VALUES ('".$pseudo."', '".$pseudoAmi."', '0', '0');";
+		SQLInsert($sql);
 	}
-	if ($classe == "nbl") {
-	  $etat_blacklist = "WHERE NOT blacklist;";
-	}
-  $sql = "
-    SELECT id, pseudo, blacklist, connecte, couleur
-    FROM users
-    $etat_blacklist
-  ";
-  //echo $sql;
-  return parcoursRs(SQLSelect($sql));
 }
 
-function interdireUtilisateur($idUser)
-{
-	// cette fonction affecte le booléen "blacklist" à vrai pour l'utilisateur concerné 
-	$sql = "
-	  UPDATE users
-	  SET blacklist = 1
-	  WHERE id = '$idUser';
-	";
-	return SQLUpdate($sql);
+/********
+ *  $pseudoAmi est le pseudo de la personne qui a fait la demande d'amis, $pseudo la personne qui a reçu la demande d'ami
+ ********/
+function AccepterDemandeAmi($pseudoAmi, $pseudo)  {
+
+	// On cherche si on a recu une demande de la part de la persone	
+	$sql = 'SELECT * FROM `ami` WHERE ami.accepte = 0 AND ami.pseudo_ami = "'.$pseudoAmi.'" AND ami.pseudo = "'.$pseudo.'";';
+	$val = parcoursRs(SQLSelect($sql)) ;
+
+	// print_r($val);
+
+	if (!(isset($val[0]))) {
+		echo "ERROR !";
+ 	}	
+  	else {
+		echo "Demande Accepter";
+	   
+		// On actualise la l'etat de la demande d'ami
+		$sql = "UPDATE ami SET accepte = 1 WHERE ami.pseudo = '$pseudo' AND ami.pseudo_ami = '$pseudoAmi'";
+		SQLUpdate($sql);
+
+		// On ajoute $pseudo dans les amis de $pseudoAmi, et on marque que la demande est accepter	
+		$sql = "INSERT INTO `ami` (`pseudo`, `pseudo_ami`, `bloque`, `accepte`) VALUES ('".$pseudoAmi."', '".$pseudo."', '0', '1');";
+		SQLInsert($sql);
+   	}
 }
 
-function autoriserUtilisateur($idUser)
-{
-	// cette fonction affecte le booléen "blacklist" à faux pour l'utilisateur concerné 
-	$sql = "
-	  UPDATE users
-	  SET blacklist = 0
-	  WHERE id = '$idUser';
-	";
-	//echo $sql;
-	return SQLUpdate($sql);
+/********
+ *  $pseudoAmi est le pseudo de la personne qui va etre bloqué, $pseudo la personne qui bloque
+ ********/
+function BloqueAmi($pseudoAmi, $pseudo)  {
+	// On bloque $pseudoAmi dans la listes des ami de $pseudo
+	$sql = "UPDATE ami SET bloque = 1 WHERE ami.pseudo = '$pseudo' AND ami.pseudo_ami = '$pseudoAmi'";
+	SQLUpdate($sql);
+
+	// On supprime $pseudo de la liste des amis de $pseudoAmi
+	$sql = "DELETE FROM ami WHERE ami.pseudo = '$pseudoAmi' AND ami.pseudo_ami = '$pseudo'";
+	SQLDelete($sql);
 }
+
+/********
+ *  $pseudoAmi est le pseudo de la personne qui va etre bloqué, $pseudo la personne qui bloque
+ ********/
+function refuserDemandeAmi($pseudoAmi, $pseudo)  {
+	$sql = "DELETE FROM ami WHERE ami.pseudo = '$pseudo' AND ami.pseudo_ami = '$pseudoAmi'";
+	SQLDelete($sql);
+}
+
+/********
+ *  $pseudoAmi est le pseudo de la personne qui va etre bloqué, $pseudo la personne qui bloque
+ ********/
+function retirerAmi($pseudoAmi, $pseudo)  {
+	$sql = "DELETE FROM ami WHERE ami.pseudo = '$pseudo' AND ami.pseudo_ami = '$pseudoAmi'";
+	SQLDelete($sql);
+}
+
+
+
+
+
+
 
 function verifUserBdd($login,$passe)
 {
@@ -80,246 +148,15 @@ function verifUserBdd($login,$passe)
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
-	$SQL="SELECT id FROM users WHERE pseudo='$login' AND passe='$passe'";
+	$SQL="SELECT pseudo FROM joueur WHERE pseudo='$login' AND mdp='$passe'";
 
 	return SQLGetChamp($SQL);
 	// si on avait besoin de plus d'un champ
 	// on aurait du utiliser SQLSelect
 }
 
-
-function isAdmin($idUser)
-{
-	// vérifie si l'utilisateur est un administrateur
-	$SQL ="SELECT admin FROM users WHERE id='$idUser'";
-	return SQLGetChamp($SQL); 
+function ajouter_joueur($pseudo, $mdp){
+	$SQL = "INSERT INTO joueur VALUES ('$pseudo', '$mdp');";
+	return SQLInsert($SQL);
 }
-
-/********* PARTIE 2 *********/
-
-function mkUser($pseudo, $passe,$admin=false,$couleur="black")
-{
-	// Cette fonction crée un nouvel utilisateur et renvoie l'identifiant de l'utilisateur créé
-	$intAdmin = $admin ? 1 : 0;
-	return SQLInsert("
-	  INSERT INTO users(pseudo, passe, admin, couleur)
-	  VALUES ('$pseudo', '$passe', $intAdmin, '$couleur');
-	");
-}
-
-function connecterUtilisateur($idUser)
-{
-	// cette fonction affecte le booléen "connecte" à vrai pour l'utilisateur concerné 
-	return SQLUpdate("
-	  UPDATE users
-	  SET connecte = 1
-	  WHERE id = '$idUser';
-	");
-}
-
-function deconnecterUtilisateur($idUser)
-{
-	// cette fonction affecte le booléen "connecte" à faux pour l'utilisateur concerné 
-	return SQLUpdate("
-	  UPDATE users
-	  SET connecte = 0
-	  WHERE id = '$idUser';
-	");
-}
-
-function changerCouleur($idUser,$couleur="black")
-{
-	// cette fonction modifie la valeur du champ 'couleur' de l'utilisateur concerné
-	$sql = "
-	  UPDATE users
-	  SET couleur = '$couleur'
-	  WHERE id = '$idUser';
-	";
-	return SQLUpdate($sql);
-}
-
-function changerPasse($idUser,$passe)
-{
-	// cette fonction modifie le mot de passe d'un utilisateur
-	return SQLUpdate("
-	  UPDATE users
-	  SET passe = '$passe'
-	  WHERE id = '$idUser';
-	");
-}
-
-function changerPseudo($idUser,$pseudo)
-{
-	// cette fonction modifie le pseudo d'un utilisateur
-	return SQLUpdate("
-	  UPDATE users
-	  SET pseudo = '$pseudo'
-	  WHERE id = '$idUser';
-	");
-}
-
-function promouvoirAdmin($idUser)
-{
-	// cette fonction fait de l'utilisateur un administrateur
-	return SQLUpdate("
-	  UPDATE users
-	  SET admin = 1
-	  WHERE id = '$idUser';
-	");
-}
-
-function retrograderUser($idUser)
-{
-	// cette fonction fait de l'utilisateur un simple mortel
-	return SQLUpdate("
-	  UPDATE users
-	  SET admin = 0
-	  WHERE id = '$idUser';
-	");
-}
-
-
-/********* PARTIE 3 *********/
-
-function listerUtilisateursConnectes()
-{
-	// Liste les utilisteurs connectes
-	return parcoursRs(SQLSelect("
-	  SELECT * FROM users WHERE connecte;
-	"));
-}
-
-function listerConversations($mode="tout")
-{
-	// Liste toutes les conversations ($mode="tout")
-	// OU uniquement celles actives  ($mode="actives"), ou inactives  ($mode="inactives")
-	$sqlMode = "";
-	if ($mode == "actives") {
-	  $sqlMode = "WHERE active";
-  }
-	if ($mode == "inactives") {
-	  $sqlMode = "WHERE NOT active";
-  }
-	return parcoursRs(SQLSelect("
-	  SELECT * FROM conversations $sqlMode;
-	"));
-}
-
-function archiverConversation($idConversation)
-{
-	// rend une conversation inactive
-	return SQLUpdate("
-	  UPDATE conversations
-	  SET active = 0
-	  WHERE id = '$idConversation';
-	");
-}
-
-function creerConversation($theme)
-{
-	// crée une nouvelle conversation et renvoie son identifiant
-	SQLInsert("
-	  INSERT INTO conversations(theme)
-	  VALUES ('$theme');
-	");
-	return SQLGetChamp("
-	  SELECT MAX(id)
-	  FROM conversations;
-	");
-}
-
-function reactiverConversation($idConversation)
-{	
-	// rend une conversation active
-	return SQLUpdate("
-	  UPDATE conversations
-	  SET active = 1
-	  WHERE id = '$idConversation';
-	");
-}
-
-function supprimerConversation($idConv)
-{
-	// supprime une conversation et ses messages
-
-	// NB : on aurait pu aussi demander à mysql de supprimer automatiquement
-	// les messages lorsqu'une conversation est supprimée, 
-	// en déclarant idConversation comme clé étrangère vers le champ id de la table 
-	// des conversations et en définissant un trigger
-	SQLDelete("
-	  DELETE FROM message
-	  WHERE idConversation = '$idConv';
-	");
-	return SQLDelete("
-	  DELETE FROM conversations
-	  WHERE id = '$idConv';
-	");
-}
-
-
-function enregistrerMessage($idConversation, $idAuteur, $contenu)
-{
-	// Enregistre un message dans la base en encodant les caractères spéciaux HTML : <, > et & pour interdire les messages HTML
-	$contenu = htmlspecialchars($contenu);
-	return SQLInsert("
-	  INSERT INTO message(idConversation, idAuteur, contenu)
-	  VALUES('$idConversation', '$idAuteur', '$contenu');
-	");
-}
-
-function listerMessages($idConv,$format="asso")
-{
-	// Liste les messages de cette conversation, au format JSON ou tableau associatif
-	// Champs à extraire : contenu, auteur, couleur 
-	// en ne renvoyant pas les utilisateurs blacklistés
-	$sql = "
-	  SELECT
-	    message.contenu AS contenu,
-	    users.pseudo AS auteur,
-	    users.couleur AS couleur
-	  FROM message
-	  JOIN users ON message.idAuteur = users.id
-	  WHERE message.idConversation = '$idConv'
-	    AND NOT users.blacklist;
-  ";
-	$res = parcoursRs(SQLSelect($sql));
-	if (strtoupper($format) == "JSON") {
-	  return JSON_encode($res);
-	} else {
-	  return $res;
-	}
-}
-
-function listerMessagesFromIndex($idConv,$index)
-{
-	// Liste les messages de cette conversation, 
-	// dont l'id est superieur à l'identifiant passé
-	// Champs à extraire : contenu, auteur, couleur 
-	// en ne renvoyant pas les utilisateurs blacklistés
-	$sql = "
-	  SELECT
-	    message.contenu AS contenu,
-	    users.pseudo AS auteur,
-	    users.couleur AS couleur
-	  FROM message
-	  JOIN users ON message.idAuteur = users.id
-	  WHERE message.idConversation = '$idConv'
-	    AND message.id > '$index'
-	    AND NOT users.blacklist;
-  ";
-	return parcoursRs(SQLSelect($sql));
-}
-
-function getConversation($idConv)
-{	
-	// Récupère les données de la conversation (theme, active)
-	return parcoursRs(SQLSelect("
-	  SELECT theme, active
-	  FROM conversations
-	  WHERE id = '$idConv';
-	"));
-}
-
-
-
 ?>

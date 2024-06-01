@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <?php
-//if (basename($_SERVER["PHP_SELF"]) != "index.php")
-//{
-//	header("Location:../index.php?view=accueil");
-//	die("");
-//}
+
+
+
+
+if (basename($_SERVER["PHP_SELF"]) != "index.php")
+{
+	header("Location:../index.php?view=login");
+	die("");
+}
+
 
 echo "<style>";
-include_once "../CSS/styleGame.css" ;
+echo file_get_contents("css/styleGame.css");
 echo "</style>";
 
-include_once("../libs/maLibUtils.php");
+include_once("libs/maLibUtils.php");
 
-include_once("../libs/modele.php");
+include_once("libs/modele.php");
 
 
-// info pour moi 17/05 20:30-21:30 && 22:30
-
+// info pour moi 17/05 20:30-21:30 && 22:30-00:00
+// 18/05 13:30-15:00  17:00-19:00
+// +2h 26/05
 
 ?>
 
-<script src="../JavaScripts/pageGameScript.js"></script>
+<script src="js/pageGameScript.js"></script>
 
 
 
 
 
 
-<!----- <img class="right" src="../images/perso/persodoodle.png" alt="doodle perso right to left">
+ <img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
     
-    <img class="left" src="../images/perso/persodoodle.png" alt="doodle perso right to left">-----------------------BODY--------------------------------->
+<img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
+    <!-----------------------BODY--------------------------------->
 <body onload="initGamePage()">
 <div id="affichage">
-<iframe id="gameiframe" src="gameframe.php"  scrolling="no" ></iframe>
+<iframe id="gameiframe" src="templates/gameframe.php"  scrolling="no" ></iframe>
     <input type="button" value="test" onclick="reload()">
 </div>
 
+<div id=popupGameDeath>
+        <p>Vous etes mort.  Voulez vous recommencer?</p>
+        
+        <input type="button" value="retry" onclick="reload()">
+    </div>
 
 <div id="select">
     <?php
+
+        
+
+
         // --------------CHOIX DU TEXTURE PACK------------------------------
         $listTexture = listerTexturePack();
         //tprint($listTexture);

@@ -16,8 +16,21 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** H E A D **** -->
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>ProjetWebG20_dataBase</title>
-	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+	<title>IG2I</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+
+	<!-- Liaisons aux fichiers css de Bootstrap -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+	<link href="css/sticky-footer.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
+	  <script src="js/html5shiv.js"></script>
+	  <script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<script src="js/jquery.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	
 
 </head>
 <!-- **** F I N **** H E A D **** -->
@@ -26,39 +39,44 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** B O D Y **** -->
 <body>
 
+<!-- style inspiré de http://www.bootstrapzero.com/bootstrap-template/sticky-footer --> 
 
-<div id="banniere">
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+        </button>
+	<a class="navbar-brand" href="index.php?view=accueil">IG2I</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+         	<!-- <li class="active"><a href="index.php?view=accueil">Accueil</a></li> -->
+		<?=mkHeadLink("Accueil","accueil",$view)?>
+		<?php
+		// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
+		if (!valider("connecte","SESSION")){
+			echo mkHeadLink("Se connecter","login",$view); 
+			echo mkHeadLink("Créer mon compte","creationCompte",$view);
+			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
+		}
+		echo mkHeadLink("Tableau des scores","scores",$view);
+		?>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+  
 
-<div id="logo">
-<img src="ressources/ig2i.jpeg" />
-</div>
 
-<a href="index.php?view=accueil">Accueil</a>
-
-<?php
-// Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
-if (!valider("connecte", "SESSION")) {
-  echo "<a href=\"index.php?view=login\">Connexion</a>\n";
-}
-
-if (valider("connecte", "SESSION")) {
-  echo "<a href=\"index.php?view=conversations\">Conversations</a>\n";
-}
-
-?>
-
-<h1 id="chatisig">Clavardage</h1>
+  <!-- Begin page content -->
+  <div class="container">
 
 
-<?php
-
-if ($message = valider("message", "GET")) {
-  echo "<div id=\"message\">$message</div>\n";
-}
-
-?>
-
-</div>
 
 
 

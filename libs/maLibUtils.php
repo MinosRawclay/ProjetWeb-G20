@@ -101,22 +101,21 @@ function tprint($tab)
 	echo "</pre>\n";	
 }
 
-function rediriger($url,$tabQS="")
+
+function rediriger($url,$qs="")
 {
-	$qs =""; 
-	// NB : tabQS est un tableau associatif 
+	// if ($qs != "")	 $qs = urlencode($qs);	
+	// Il faut respecter l'encodage des caractères dans les chaînes de requêtes
+	// NB : Pose des problèmes en cas de valeurs multiples
+	// TODO: Passer un tabAsso en paramètres
 
-	if (is_array($tabQS)) {
-		foreach($tabQS as $nom => $val) {
-			// Il faut respecter l'encodage des caractères dans les chaînes de requêtes
-			$qs .= "$nom=" . urlencode($val) . "&";
-		}
-	}
-	
-	header("Location:$url?" . rtrim($qs, "&") ); // envoi par la méthode GET
+	if ($qs != "") $qs = "?$qs";
+ 
+	header("Location:$url$qs"); // envoi par la méthode GET
 	die(""); // interrompt l'interprétation du code 
-}
 
+	// TODO: on pourrait passer en parametre le message servant au die...
+}
 
 // TODO: intégrer les redirections vers la page index dans une fonction :
 
