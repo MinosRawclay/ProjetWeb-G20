@@ -172,34 +172,23 @@ function mkLiens($tabData,$champLabel, $champCible, $urlBase=false, $nomCible=""
 	// dans la chaîne de requête, associé au paramètre $nomCible, après un '&' 
 
 	// Exemples d'appels : 
-	// mkLiens($conversations,"theme","id");
+	// mkLiens($conversations,"id","theme");
 	// produira <a href="1">Multimédia</a> ...
 
 	// mkLiens($conversations,"theme","id","index.php?view=chat","idConv");
 	// produira <a href="index.php?view=chat&idConv=1">Multimédia</a> ...
 
-	if (!$urlBase) {
-		foreach($tabData as $data) {			
-			echo '<a href="';
-			echo $data[$champCible];
-			echo '">';
-			echo $data[$champLabel];
-			echo "</a>\n<br />\n";
-		}
-	}
-	else {
-		// parcourir les données de tabData 
-		foreach($tabData as $data) {
-			// on parcourt uniquement les valeurs
-			// a chaque itération, les valeurs sont dans 
-			// le tableau $data
-			echo '<a href="';
-			echo $urlBase . "&" . $nomCible . "=" ;
-			echo $data[$champCible];
-			echo '">';
-			echo $data[$champLabel];
-			echo "</a>\n<br />\n";
-		}
+	// parcourir les données de tabData 
+	foreach($tabData as $data) {
+		// on parcourt uniquement les valeurs
+		// a chaque itération, les valeurs sont dans 
+		// le tableau $data
+		echo '<a href="';
+		echo $urlBase . "&" . $nomCible . "=" ;
+		echo $data[$champCible];
+		echo '">';
+		echo $data[$champLabel];
+		echo "</a>\n<br />\n";
 	}
 }
 ?>
