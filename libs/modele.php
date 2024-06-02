@@ -174,4 +174,9 @@ function nbrNiv(){
 	$sql = 'SELECT COUNT(*) FROM annuaireNiveau WHERE campagne=1;';
 	return parcoursRs(SQLSelect($sql));
 }
+
+function maxNiv($niveau){
+	$SQL = "SELECT run1.pseudo,run1.temps FROM run as run1 JOIN annuaireNiveau ON idNiveau = id_niveau JOIN run as run2 ON run1.id_niveau = run2.id_niveau WHERE Nom = '$niveau' HAVING run1.temps = MIN(run2.temps);";
+	return parcoursRs(SQLSelect($SQL));
+}
 ?>

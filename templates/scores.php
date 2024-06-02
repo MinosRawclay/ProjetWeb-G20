@@ -31,5 +31,15 @@ foreach ($amis as $ami) {
 }
 } else {
   ?><p>Vous n'avez pas d'amis :,(</p><?php }
-  foreach ($niveaux as $niveau) {}// TO DO : faire une requete dans modele permettant d'avoir le meilleur score d'un niveau
+foreach ($niveaux as $niveau) {
+  echo '<div class="scoreMonde">';
+  echo "<p class='monde'>".$niveau["Nom"]."</p>";  
+  $meilleur = maxNiv($niveau["Nom"]);
+  if (isset($meilleur[0]["pseudo"]) && isset($meilleur[0]["temps"]))
+    echo "<p>".$meilleur[0]["pseudo"]." : ".$meilleur[0]["temps"]."s</p>";
+  foreach ($niveaux as $niveau) {
+    
+  }
+  echo '</div>';
+}// TO DO : faire une requete dans modele permettant d'avoir le meilleur score d'un niveau
 ?>

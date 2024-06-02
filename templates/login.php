@@ -13,7 +13,7 @@ $passe = valider("passe", "COOKIE");
 if ($checked = valider("remember", "COOKIE")) $checked = "checked"; 
 
 ?>
-<img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
+<!--<img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">-->
 <div class="page-header">
 	<h1>Connexion</h1>
 </div>

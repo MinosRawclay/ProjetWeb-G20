@@ -21,49 +21,50 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
 ?>
 
-<img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
-    <div class="page-header">
-      <h1>Bienvenu dans IG2I !</h1>
-    </div>
+<img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso left to right">
 
-    <p class="lead">Contenu </p>
-<?php
-    if (!valider("connecte","SESSION")){
-		?><form role="form" action="index.php" methode="get">
-      <input type="hidden" name="view" value="gamePage">
-    <button class="BOUTTON" type="submit" name="action" >Jouer en tant qu'invité</button>
-  </form><?php
-    } else {
-      ?><form role="form" action="index.php" methode="get">
-        <input type="hidden" name="view" value="gamePage">
-      <button class="BOUTTON" type="submit" name="action" >Jouer</button>
-      </form>
-      <form role="form" action="index.php" methode="get">
-        <input type="hidden" name="view" value="amis">
-      <button class="BOUTTON" type="submit" name="action" >Gestion des amis</button>
-      </form>
-      <?php
-	}
-	?>
-
-
-<div class="affichage">
-  <?php 
-  //  echo "test0--";
-  $pseudo = valider("pseudo","SESSION");
-  // echo $pseudo;
-  // echo "test1--";
-  $amis = listerAmis($pseudo);
-  // print_r($amis);
-  // echo "test2--";
-
-  foreach ($amis as $ami) {
-    echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
-  }
-
-  ?>
-
-
+<div class="page-header">
+  <h1>Bienvenu dans IG2I !</h1>
 </div>
+
+<?php
+  if (!valider("connecte","SESSION")){
+?>
+<div class="orga">
+  <form role="form" action="index.php" methode="get">
+    <input type="hidden" name="view" value="gamePage">
+    <button class="BOUTTONjouer" type="submit" name="action" >Jouer en tant qu'invité</button>
+  </form>
+</div>
+<?php
+  } else {
+?>
+<div class="orga">
+  <div class="orga2">
+    <form role="form" action="index.php" methode="get">
+      <input type="hidden" name="view" value="gamePage">
+      <button class="BOUTTONjouer" type="submit" name="action" >Jouer</button>
+    </form>
+  </div>
+  <div class="orga2 orga3">
+    <div class="affichage">
+      <?php 
+        $pseudo = valider("pseudo","SESSION");
+        $amis = listerAmis($pseudo);
+        foreach ($amis as $ami) {
+          echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
+        }
+      ?>
+    </div>
+    <form role="form" action="index.php" methode="get">
+      <input type="hidden" name="view" value="amis">
+      <button class="BOUTTONamis" type="submit" name="action" >Gestion des amis</button>
+    </form>
+  </div>
+</div>
+<?php
+	}
+?>
+
 
 

@@ -5,7 +5,29 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    
+    background-color: rgb(12, 12, 31);
+    background-image: url("../ressources/images/fond.png");
+    /*
+    background-image: radial-gradient(circle, #eea 1%, transparent 10%), radial-gradient(circle, #eea 1%, transparent 10%);
+    background-size: 100px 100px;
+    background-position: 0 0, 70px 50px;
+    */
+    color: rgb(189, 162, 75);
+
 }
+
+
+
+.footer {
+    background-color: #fff;
+    background-image: radial-gradient(circle, #00f 50%, transparent 10%), radial-gradient(circle, #00f 50%, transparent 10%);
+    background-size: 1300px 900px;
+    background-position: 0 0, 0px 0px;
+
+}
+
+
 
 div#popupGameDeath {
     
@@ -50,6 +72,31 @@ div#popupGameDeath input {
 
 }
 
+div.affichage {
+    position: relative;
+
+    padding-top: 1%;
+    display: flex;
+
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    background: linear-gradient(45deg, #355 12.5%, #559 12.5%, #559 37.5%, #355 37.5%, #355 62.5%, #559 62.5%, #559 87.5%, #355 87.5%);
+    background-size: 10px 10px;
+    background-position: 50px 50px;
+    color: #e2e2e2;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-evenly;
+}
+
+.orga {
+    display: flex;
+    align-items: center;
+    align-content: space-evenly;
+    height: 80%;
+    width: 100%;
+
+}
 
 
 div#affichage {
@@ -89,6 +136,34 @@ img.left {
     left: 5%;
     height: 80%;
     width: 27%;
+}
+
+div.accueilImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+button.BOUTTONjouer {
+    height: 100px;
+    width: 300px;
+    margin-top: 100%;
+    font-size: 30px;
+    color: #000000;
+}
+
+button.BOUTTONamis   {
+    height: 50px;
+    width: 300px;
+    margin-top: 10px;
+}
+
+div.orga2 {
+    padding-right: 20%;
+}
+
+div.orga3 {
+    padding-top: 25%;
 }
 
 /*------------------------IFRAME-------------------*/
