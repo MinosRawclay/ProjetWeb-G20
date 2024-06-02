@@ -124,18 +124,18 @@ img.right {
 
     position: absolute;
     
-    left: 68%;
+    left: 80%;
     transform: scaleX(-1); /*effet miroir*/
-    height: 80%;
-    width: 27%;
+    height: 70%;
+    width: 16%;
 }
 
 img.left {
     position: absolute;
 
     left: 5%;
-    height: 80%;
-    width: 27%;
+    height: 70%;
+    width: 16%;
 }
 
 div.accueilImage {

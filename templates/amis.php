@@ -8,7 +8,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 }
 
 ?>
-
+<img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso left to right">
 
     <div class="page-header">
       <h1>Page des amis</h1>
