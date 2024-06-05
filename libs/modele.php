@@ -179,4 +179,8 @@ function maxNiv($niveau){
 	$SQL = "SELECT run1.pseudo,run1.temps FROM run as run1 JOIN annuaireNiveau ON idNiveau = id_niveau JOIN run as run2 ON run1.id_niveau = run2.id_niveau WHERE Nom = '$niveau' HAVING run1.temps = MIN(run2.temps);";
 	return parcoursRs(SQLSelect($SQL));
 }
-?>
+
+function creerPack($nom, $createur, $perso, $persogauche, $persocasq, $persocasqgauche, $monstre1, $monstre2, $bombe, $casquette, $trampo, $plat1, $plat2, $fond){
+	$SQL = "INSERT INTO texture VALUES ('$nom', '$createur', '$plat1', '$plat2', '$monstre1', '$monstre2', '$trampo', '$casquette', '$bombe', '$fond', '$perso', '$persogauche', '$persocasq', '$persocasqgauche');";
+}
+

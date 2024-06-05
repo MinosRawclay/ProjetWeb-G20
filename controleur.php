@@ -117,6 +117,38 @@ session_start();
 				
 				$addArgs = "?view=amis";
 			break;
+
+			case 'texture' :
+				if ($nom = valider('nom')) {
+					$perso = valider("perso");
+					$persogauche = valider("persogauche");
+					$persocasq = valider("persocasq");
+					$persocasqgauche = valider("persocasqgauche");
+					$monstre1 = valider("monstre1");
+					$monstre2 = valider("monstre2");
+					$bombe = valider("bombe");
+					$casquette = valider("perso");
+					$trampo = valider("trampo");
+					$plat1 = valider("plat1");
+					$plat2 = valider("plat2");
+					$fond = valider("fond");
+					$createur = $_SESSION["pseudo"];
+					if ($perso == False) $perso = "ressources/image/perso/persodoodle_jump_R.png";
+					if ($persogauche == False) $persogauche = "ressources/image/perso/persodoodle_jump_L.png";
+					if ($persocasq == False) $persocasq = "ressources/image/perso/persodoodle_casquette.png";
+					if ($persocasqgauche == False) $persocasqgauche = "ressources/image/perso/persodoodle_casquette_J.png";
+					if ($monstre1 == False) $monstre1 = "ressources/image/monstre/monstre1.png";
+					if ($monstre2 == False) $monstre2 = "ressources/image/monstre/monstre2.png";
+					if ($bombe == False) $bombe = "ressources/image/object/bombe.png";
+					if ($casquette == False) $casquette = "ressources/image/object/casquette.png";
+					if ($trampo == False) $trampo = "ressources/image/object/trampoline.png";
+					if ($plat1 == False) $plat1 = "ressources/image/plateforme/plateforme1.png";
+					if ($plat2 == False) $plat2 = "ressources/image/plateforme/plateforme2.png";
+					if ($fond == False) $fond = "ressources/image/fondetoile.png";
+					creerPack($nom, $createur, $perso, $persogauche, $persocasq, $persocasqgauche, $monstre1, $monstre2, $bombe, $casquette, $trampo, $plat1, $plat2, $fond);
+				}
+				$addArgs = "?view=gamePage";
+			break;
 		}
 
 	}
