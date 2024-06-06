@@ -3,7 +3,7 @@
 <?php 
 echo "<style>";
 //include_once("../CSS/styleGame.css");
-echo file_get_contents("../CSS/styleEditor.css");
+echo file_get_contents("../css/styleEditor.css");
 echo "</style>";
 
 
@@ -28,7 +28,7 @@ echo "</style>";
 
 
 
-<script src="../JavaScripts/editorframe.js?v=<?php echo time(); ?>"></script>
+<script src="../js/editorframe.js?v=<?php echo time(); ?>"></script>
 
 <body onload="InitEditFrame()">
 <div id="grille">

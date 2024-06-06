@@ -4,6 +4,48 @@
 // inclure ici la librairie faciliant les requêtes SQL
 include_once("maLibSQL.pdo.php");
 
+function getLastIndexAnnuaire() {
+	$sql  = "SELECT annuaireNiveau.idNiveau FROM annuaireNiveau ORDER BY annuaireNiveau.idNiveau DESC
+	LIMIT 1;";
+	return parcoursRs(SQLSelect($sql));
+}
+
+function AjouterNivTable($pseudo, $nomTable) {
+	$sql = "CREATE TABLE $nomTable(
+		idElement INTEGER,
+		TypeEle INTEGER  NOT NULL,
+		Xpos INTEGER NOT NULL,
+		Ypos INTEGER NOT NULL,
+	PRIMARY KEY (idElement)
+	);";
+	SQLCreateTable($sql);
+
+	$index = getLastIndexAnnuaire();
+	$index = $index[0]["idNiveau"] + 1;
+
+	 $sql = "INSERT INTO annuaireNiveau 
+	 VALUES ($index,'$pseudo','$nomTable',0,1)";
+	return SQLInsert($sql);
+}
+
+function AjouterLigneNiv($niv,$idElement,$TypeEle,$Xpos,$Ypos){
+	$sql = "INSERT INTO $niv VALUES ($idElement,$TypeEle,$Xpos,$Ypos);";
+	return SQLInsert($sql);
+
+}
+
+function getALLniv(){
+	$sql = "SELECT * FROM annuaireNiveau";
+	return parcoursRs(SQLSelect($sql));	
+}
+
+function getListNiv($pseudo) {
+	$sql = "SELECT Nom FROM annuaireNiveau WHERE NomAuteur = '$pseudo'";
+	return parcoursRs(SQLSelect($sql));	
+}
+
+
+
 
 function listerUtilisateurs($classe = "both")
 {
@@ -32,8 +74,8 @@ function listerTexturePack() {
 }
 
 function listerNiveau($nomNiveau){
-	$sql = '
-	SELECT * FROM `niveauTest`  ';
+	$sql = "
+	SELECT * FROM $nomNiveau"  ;
 	return parcoursRs(SQLSelect($sql));
 }
 
@@ -182,5 +224,6 @@ function maxNiv($niveau){
 
 function creerPack($nom, $createur, $perso, $persogauche, $persocasq, $persocasqgauche, $monstre1, $monstre2, $bombe, $casquette, $trampo, $plat1, $plat2, $fond){
 	$SQL = "INSERT INTO texture VALUES ('$nom', '$createur', '$plat1', '$plat2', '$monstre1', '$monstre2', '$trampo', '$casquette', '$bombe', '$fond', '$perso', '$persogauche', '$persocasq', '$persocasqgauche');";
+	return SQLInsert($SQL);
 }
 

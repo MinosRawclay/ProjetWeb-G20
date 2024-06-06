@@ -31,10 +31,12 @@ FOREIGN KEY (createur) REFERENCES joueur(pseudo)
 
 CREATE TABLE annuaireNiveau (
     idNiveau INTEGER,
+    NomAuteur VARCHAR (50)  NOT NULL,
     Nom VARCHAR (50)  NOT NULL,
     campagne INTEGER,
     publique INTEGER,
-PRIMARY KEY (idNiveau)
+PRIMARY KEY (idNiveau),
+FOREIGN KEY (NomAuteur) REFERENCES joueur(pseudo)
 );
 
 

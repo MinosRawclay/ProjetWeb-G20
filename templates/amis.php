@@ -43,11 +43,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
     echo '<form action="controleur.php" method="get">
     <input type="hidden" name="pseudoAmi" value="'.$ami["pseudo_ami"].'">
-    <button type="submit" name="action" value="accepterDemandeAmi" class="bouttonDemandeAmiY">Y</button>
+    <button type="submit" name="action" value="accepterDemandeAmi" class="bouttonDemandeAmiY">Accepter la demande en ami</button>
     </form>';
     echo '<form action="controleur.php" method="get">
     <input type="hidden" name="pseudoAmi" value="'.$ami["pseudo_ami"].'">
-    <button type="submit" name="action" value="refuserDemandeAmi" class="bouttonDemandeAmiN">N</button>
+    <button type="submit" name="action" value="refuserDemandeAmi" class="bouttonDemandeAmiN">Refuser la demande en ami</button>
     </form>';
     echo '</div>';
   }
@@ -59,11 +59,11 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
     echo '<form action="controleur.php" method="get">
     <input type="hidden" name="pseudoAmi" value="'.$ami["pseudo_ami"].'">
-    <button type="submit" name="action" value="retirerAmi" class="bouttonRetirerAmi">R</button>
+    <button type="submit" name="action" value="retirerAmi" class="bouttonRetirerAmi">Retirer l ami</button>
     </form>';
     echo '<form action="controleur.php" method="get">
     <input type="hidden" name="pseudoAmi" value="'.$ami["pseudo_ami"].'">
-    <button type="submit" name="action" value="bloqueAmi" class="bouttonbloqueAmi">B</button>
+    <button type="submit" name="action" value="bloqueAmi" class="bouttonbloqueAmi">Bloquer l ami</button>
     </form>';
     echo '</div>';
   }

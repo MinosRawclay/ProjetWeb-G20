@@ -32,7 +32,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 ?>
 <div class="orga">
   <form role="form" action="index.php" methode="get">
-    <input type="hidden" name="view" value="gamePage">
+    <input type="hidden" name="view" value="listeniveau">
     <button class="BOUTTONjouer" type="submit" name="action" >Jouer en tant qu'invité</button>
   </form>
 </div>
@@ -42,7 +42,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 <div class="orga">
   <div class="orga2">
     <form role="form" action="index.php" methode="get">
-      <input type="hidden" name="view" value="gamePage">
+      <input type="hidden" name="view" value="listeniveau">
       <button class="BOUTTONjouer" type="submit" name="action" >Jouer</button>
     </form>
   </div>

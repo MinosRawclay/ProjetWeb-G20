@@ -65,6 +65,9 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 			echo mkHeadLink("Créer mon compte","creationCompte",$view);
 			//echo "<li><a href=\"index.php?view=login\">Se connecter</a></li>";
 		}
+		else {
+			echo mkHeadLink("Edieur de niveau","editorPage",$view); 
+		}
 		echo mkHeadLink("Tableau des scores","scores",$view);
 		?>
         </ul>

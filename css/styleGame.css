@@ -13,6 +13,10 @@ html, body {
     background-size: 100px 100px;
     background-position: 0 0, 70px 50px;
     */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    background-size: cover; /* Adapte la taille de l'image pour couvrir toute la page */
+    background-position: center; /* Centre l'image */
+
     color: rgb(189, 162, 75);
 
 }
@@ -166,6 +170,29 @@ div.orga3 {
     padding-top: 25%;
 }
 
+div.score {
+    position: relative;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 25%;
+}
+
+.bouttonRetirerAmi {
+    color: black;
+}
+
+.bouttonbloqueAmi {
+    color: black;
+}
+
+.bouttonDemandeAmiY {
+    color: black;
+}
+
+.bouttonDemandeAmiN {
+    color: black;
+}
+
 /*------------------------IFRAME-------------------*/
 iframe {
     position: absolute;
@@ -228,6 +255,14 @@ div.GameImgHolder > img {
     bottom: 45%;
     left: 40%;
 }
+
+.END{   
+    height: 1%;
+    width: 100%;
+    background-color: rgb(83, 2, 2);
+    position: absolute;
+}
+
 
 .plateforme1{
     height: 5%;

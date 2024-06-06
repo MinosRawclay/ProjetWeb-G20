@@ -104,6 +104,24 @@ function remplirniv() {
                 break;
             case -2:
                     //console.log("-2");
+                    
+
+                    //END 
+                    var child = document.createElement('div');
+
+                    // Ajout d'un id à l'élément enfant
+                    child.classList.add ("END") ; 
+
+                    // Ajout du nœud enfant au nœud parent
+                    gameW.appendChild(child);
+                    //-------------
+                    // Création des variables
+                    holder = document.getElementsByClassName("END","GameImgHolder");
+                    holder = holder[0];    
+                    holder.style.bottom =  ((element.Ypos)*10) + '%';
+                    holder.style.left = 0 + '%';
+                    
+                    
                     // Création du nœud enfant perso
                     var child = document.createElement('div');
                     child.innerHTML = '<input type="button" value="START" onclick="Start2()">';
@@ -113,7 +131,6 @@ function remplirniv() {
                     
                     // Ajout du nœud enfant au nœud parent
                     gameW.appendChild(child);
-
 
 
                 break;            

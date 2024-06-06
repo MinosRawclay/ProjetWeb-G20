@@ -26,7 +26,7 @@ var dragged;
                     holder.className = "dropzone";
                     ligne.appendChild(holder);
                 }
-                console.log(ligne);
+                //console.log(ligne);
                 grille.prepend(ligne);  
             }
         }
@@ -98,34 +98,29 @@ var dragged;
             if (event.target.className == "dropzone" && event.target.childElementCount == 0) {
 
                 event.target.style.background = "";
-                // console.log(dragged);
-                // console.log("Drop");
-                // console.log(dragged);
-
-                
-
-                
+                var trashCan = this.getElementById("trashCan");
                 
                 if (dragged  == undefined) {// si l'élement drag est dans la page parent on le récupère et on le duplique
                     dragged = window.parent.dragged;
-                    // console.log(dragged);
                     var drag = dragged.cloneNode(true);
-                    // drag.innerHTML = "cool";
-                    // var drag2 = dragged.cloneNode(true);
-                    // console.log(drag);
-                    
-                    dragged.parentNode.appendChild(drag);
-                    event.target.prepend(dragged);
-                    // dragged.parentNode.removeChild(dragged);
+                    // console.log("test :");
+                    // console.log(drag.src);
+                    var src = drag.src
+                    event.target.prepend(drag);
+                    // console.log( event.target.firstChild.src);
+                   
+                    event.target.firstChild.src = src;
 
+                     if (event.target == trashCan) {
+                         trashCan.removeChild(trashCan.firstChild);
+                     }
                 }
                 else {
-
-                
-                // console.log(drag);
                 dragged.style.opacity = "";
                 event.target.prepend(dragged);
-                
+                 if (event.target == trashCan) {
+                     trashCan.removeChild(trashCan.firstChild);
+                 }
                 }
                 dragged = undefined;
             }
