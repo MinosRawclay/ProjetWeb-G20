@@ -9,7 +9,7 @@
     <?php
          
         $listeniv = getALLniv();
-        print_r($listeniv);
+        ///print_r($listeniv);
         $pseudo = valider("pseudo","SESSION");
         foreach ($listeniv as $element) {
             if ($element["NomAuteur"] == $pseudo || $element["publique"]==1) {

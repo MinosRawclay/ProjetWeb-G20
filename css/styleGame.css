@@ -102,6 +102,23 @@ div#popupGameVictory {
     border: 1rem solid #32a1ce;
 }
 
+
+
+div#ograListeNiv {
+    position: absolute;
+    width: 80%;
+    left: 20%;
+    height: 80%;
+    display: flex;
+    align-content: space-around ;
+    justify-content: space-around;
+}
+
+div#ograListeNiv input {
+    width: 10%;
+}
+
+
 div#popupGameVictory input {
 
     position: absolute;
