@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 
+// auteur Raphael
 
 
 
@@ -20,9 +21,6 @@ include_once("libs/maLibUtils.php");
 include_once("libs/modele.php");
 
 
-// info pour moi 17/05 20:30-21:30 && 22:30-00:00
-// 18/05 13:30-15:00  17:00-19:00
-// +2h 26/05
 
 ?>
 

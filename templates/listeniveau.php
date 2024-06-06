@@ -8,6 +8,7 @@
 <div class="ograListeNiv">
     <p>Liste des niveaux</p>
     <?php
+// auteur Raphael
          
         $listeniv = getALLniv();
         ///print_r($listeniv);

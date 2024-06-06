@@ -5,6 +5,9 @@ echo "<style>";
 //include_once("../CSS/styleGame.css");
 echo file_get_contents("css/styleEditor.css");
 echo "</style>";
+
+// auteur Raphael
+
 ?>
 
 <script>

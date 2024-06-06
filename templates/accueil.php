@@ -1,4 +1,5 @@
 <?php
+// auteur Paul-Emile
 
 //C'est la propriété php_self qui nous l'indique : 
 // Quand on vient de index : 

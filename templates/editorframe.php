@@ -1,27 +1,14 @@
 
 
 <?php 
+
+// auteur Raphael
+
+
 echo "<style>";
 //include_once("../CSS/styleGame.css");
 echo file_get_contents("../css/styleEditor.css");
 echo "</style>";
-
-
-
-// <div class="dropzone" >
-//     <div
-//         class="draggable"
-//         draggable="true"
-//         ondragstart="event.dataTransfer.setData('text/plain',null)" 
-//         >
-//         This div is draggable2
-//     </div>
-// </div>
-// <div class="dropzone"></div>
-// <div class="dropzone"></div>
-// <div class="dropzone"></div>
-
-
 
 ?>
 

@@ -1,5 +1,6 @@
 var dragged;
 
+// auteur Raphael
 
     function actualiserLignesFrame(nbLignes) {
 

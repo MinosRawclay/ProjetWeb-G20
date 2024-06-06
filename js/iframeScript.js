@@ -1,5 +1,6 @@
 var  gameW, perso, texture, trueTexture,moveL,moveR,posInf,posSupMax,hightJump, target, elements, listImput, IDrafraicissement,listImputFantome, temp;
 function initIframe (){
+// auteur Raphael
 
     console.log('initIframe');
     gameW = document.getElementById('gameWindow');

@@ -1,5 +1,5 @@
 <?php
-
+// auteur Paul-Emile
 
 if (basename($_SERVER["PHP_SELF"]) != "index.php")
 {

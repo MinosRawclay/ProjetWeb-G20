@@ -1,5 +1,6 @@
 var dragged;
 
+// auteur Raphael
 
 
 /* Les événements sont déclenchés sur les objets glissables */
