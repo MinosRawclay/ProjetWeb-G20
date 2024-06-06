@@ -17,9 +17,8 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 </div>
 
 <div id="footer">
-	<p>Crédit : Allo Raphaël / Potin Paul-Emile</p>
     <div class="container">
-		<p class="text-muted credit">
+		<p class="text-muted credit">Crédit : Allo Raphaël / Potin Paul-Emile |
 			<?php
 			// Si l'utilisateur est connecte, on affiche un lien de deconnexion 
 			if (valider("connecte","SESSION"))

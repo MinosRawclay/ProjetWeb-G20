@@ -83,6 +83,10 @@ include_once("libs/modele.php");
     <input type="button" value="changer de texture" onclick="reload()">
                             
 </div>
+<form role="form" action="index.php" methode="get">
+      <input type="hidden" name="view" value="personalisation_perso">
+      <button class="BOUTTONtexture" type="submit" name="action" >Créer un pack de textures</button>
+    </form>
 </body>
 <!--------------------------FIN BODY-------------------------->
 
