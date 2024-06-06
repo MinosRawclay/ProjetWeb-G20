@@ -12,8 +12,8 @@ $BDD_base="testdb_<nom>";
 
 // MACHINE LINUX 
 $BDD_host="localhost";
-$BDD_user="ppotin";
-$BDD_password="ppotin"; // vide sous windows
-$BDD_base="IG2I";
+$BDD_user="root";
+$BDD_password=""; // vide sous windows
+$BDD_base="ProjetWebG20_dataBase";
 
 ?>

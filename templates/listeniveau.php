@@ -6,6 +6,7 @@
 
 
 <div class="ograListeNiv">
+    <p>Liste des niveaux</p>
     <?php
          
         $listeniv = getALLniv();

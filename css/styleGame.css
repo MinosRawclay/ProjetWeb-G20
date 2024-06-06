@@ -32,74 +32,82 @@ html, body {
 }
 
 
+.btnChoixNiv {
+    width: 100px;
+    height: 50px;
+}
+
+.ograListeNiv {
+    justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  flex-direction: column;
+}
+
+
+
+#pPopupGV {
+    position: relative;
+    top: -60%;
+}
+
+
+
 
 div#popupGameDeath {
     
     display: none;
     position: absolute;
-
-    top : 30%;
+    top: 30%;
     left: 29%;
-
     height: 25%;
-    width: 20%;
-
+    width: 40%;
     justify-content: center;
     align-content: center;
-
-    background-color: aliceblue;
+    background-color: #0c111a;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
-
     border-radius: 3rem;
-    
-    border: 1rem solid #32a1ce;
+    border: 1rem solid #c1a959;
 }
 
 div#popupGameDeath input {
 
     position: absolute;
+    top: 60%;
+  left: 40%;
+  height: 25%;
+  width: 20%;
+  color: #c1a959;
+  background: #0a1019;
 
-    top : 40%;
-    left: 40%;
-
-    height: 25%;
-    width: 20%;
-
-    color: black;
-
-    background: #32a1ce;
-    border: #32a1ce;
-    border-radius: 3rem;
+  border-radius: 3rem;
+  border: 2px solid #c1a959;
 
 }
 
 
 div#popupGameVictory {
-    
     display: none;
     position: absolute;
-
-    top : 30%;
-    left: 29%;
-
-    height: 25%;
-    width: 50%;
-
-    justify-content: center;
-    align-content: center;
-
-    background-color: aliceblue;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-
-    border-radius: 3rem;
-    
-    border: 1rem solid #32a1ce;
+  top: 35%;
+  left: 29%;
+  height: 25%;
+  width: 40%;
+  justify-content: start;
+  align-content: center;
+  background-color: #0c111a;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  border-radius: 3rem;
+  border: 1rem solid #c1a959;
 }
 
 
@@ -129,11 +137,11 @@ div#popupGameVictory input {
     height: 25%;
     width: 20%;
 
-    color: black;
-
-    background: #32a1ce;
-    border: #32a1ce;
+    color: #c1a959;
+    background: #0a1019;
+  
     border-radius: 3rem;
+    border: 2px solid #c1a959;
 
 }
 
@@ -190,11 +198,11 @@ div#affichage {
     
 }
 
-div#select {
+div.select {
     
     display: flex;
     height: 10%;
-    width: 100%;
+    width: 25%;
 
     justify-content: center;
     align-content: center;

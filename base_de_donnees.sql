@@ -1,7 +1,4 @@
 
--- BASE DE DONNER
-
-
 
 CREATE TABLE joueur (
     pseudo VARCHAR(20),
@@ -63,9 +60,33 @@ FOREIGN KEY (pseudo_ami ) REFERENCES joueur(pseudo)
 );
 
 
+INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('default', 'default');
+INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('rallo', 'rallo');
+INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('ppotin', 'ppotin');
+
+
+
+INSERT INTO `texture` (`nom`, `createur`, `plateforme1`, `plateforme2`, `monstre1`, `monstre2`, `trampoline`, `casquette`, `bombe`, `fond`, `perso`) 
+VALUES ('default', 'default', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 
 CREATE TABLE niveau1(
+	idElement INTEGER,
+	TypeEle INTEGER  NOT NULL,
+	Xpos INTEGER NOT NULL,
+	Ypos INTEGER NOT NULL,
+PRIMARY KEY (idElement)
+);
+
+CREATE TABLE niveau2(
+	idElement INTEGER,
+	TypeEle INTEGER  NOT NULL,
+	Xpos INTEGER NOT NULL,
+	Ypos INTEGER NOT NULL,
+PRIMARY KEY (idElement)
+);
+
+CREATE TABLE niveau3(
 	idElement INTEGER,
 	TypeEle INTEGER  NOT NULL,
 	Xpos INTEGER NOT NULL,
@@ -89,7 +110,7 @@ INSERT INTO niveau1 VALUES (13,1,4,14);
 INSERT INTO niveau1 VALUES (14,1,5,16);
 INSERT INTO niveau1 VALUES (15,-3,4,17);
 INSERT INTO niveau1 VALUES (16,-2,9,18);
-INSERT INTO annuaireNiveau VALUES ('default',"niveau1",1,1);
+INSERT INTO annuaireNiveau VALUES (1,'default',"niveau1",1,1);
 
 INSERT INTO niveau2 VALUES (1,1,3,1);
 INSERT INTO niveau2 VALUES (2,1,4,1);
@@ -116,7 +137,7 @@ INSERT INTO niveau2 VALUES (22,1,5,17);
 INSERT INTO niveau2 VALUES (23,1,3,18);
 INSERT INTO niveau2 VALUES (24,-3,4,19);
 INSERT INTO niveau2 VALUES (25,-2,9,20);
-INSERT INTO annuaireNiveau VALUES ('default',"niveau2",1,1);
+INSERT INTO annuaireNiveau VALUES (2,'default',"niveau2",1,1);
 
 INSERT INTO niveau3 VALUES (1,1,4,1);
 INSERT INTO niveau3 VALUES (2,0,4,2);
@@ -147,13 +168,4 @@ INSERT INTO niveau3 VALUES (26,1,6,30);
 INSERT INTO niveau3 VALUES (27,1,5,32);
 INSERT INTO niveau3 VALUES (28,-3,6,34);
 INSERT INTO niveau3 VALUES (29,-2,9,35);
-INSERT INTO annuaireNiveau VALUES ('default',"niveau3",1,1);
-
-INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('default', 'default');
-INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('rallo', 'rallo');
-INSERT INTO `joueur` (`pseudo`, `mdp`) VALUES ('ppotin', 'ppotin');
-
-
-
-INSERT INTO `texture` (`nom`, `createur`, `plateforme1`, `plateforme2`, `monstre1`, `monstre2`, `trampoline`, `casquette`, `bombe`, `fond`, `perso`) 
-VALUES ('default', 'default', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO annuaireNiveau VALUES (3,'default',"niveau3",1,1);

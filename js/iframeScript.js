@@ -13,7 +13,7 @@ function initIframe (){
         texture = event.data;
 
         
-        console.log('Données reçues dans l\'iframe : ', texture);
+        console.log('Donnees du pack de texture (default == Null) : ', texture);
         verifTexture();
         remplirniv()
 
@@ -21,7 +21,7 @@ function initIframe (){
     });
     //envoit a la page parente la confirmation d'inicialisation
     var lienIframe = window.location.href
-    window.parent.postMessage("donnee : inicialisation terminer",lienIframe);
+    window.parent.postMessage("Frame + Page : inicialisation terminer",lienIframe);
 
 }
 
@@ -29,7 +29,7 @@ function endGame() {
     clearInterval(IDrafraicissement); 
     gameW.removeChild(perso);
     
-    console.log(listImput);
+    
     console.log("end Game");
     var lienIframe = window.location.href
     window.parent.postMessage("999:GAMEOVER",lienIframe);
@@ -39,7 +39,8 @@ function endGame() {
 
 function EndVictory() {
     var tempFin =  Date.now();
-    console.log('victoire');
+    gameW.removeChild(perso);
+    // console.log('victoire');
 
     var lienIframe = window.location.href
     window.parent.postMessage("888:"+(tempFin-temp)/1000,lienIframe);
@@ -319,14 +320,14 @@ function remplirniv() {
 function Start2 (){
     var imgStart = document.getElementById("StartIMG");
     imgStart.style.display = "none"
-    console.log("test3");
+    console.log("Bonton Start apuiller - Début du jeu");
     hightJump = 0;
     var persoRect = perso.getBoundingClientRect();
     posInf = persoRect.bottom;
     posSupMax = persoRect.bottom;
     listImput = [];
     temp = Date.now();
-    console.log(temp);
+    // console.log(temp);
 
     IDrafraicissement =  setInterval(rafraichissement, 10);//fréquence de rafraichissemnt du jeu
 
@@ -368,34 +369,12 @@ function rafraichissement(){
     var unPourcent = window.innerHeight * 0.002;
     var persoRect = perso.getBoundingClientRect();
 
-    // console.log(persoRect.bottom);
-    // console.log("api");
-    //     target = document.getElementById('perso');
     elements = document.querySelectorAll('.GameImgHolder');//touts les éléments de la page
-    // console.log(elements);
-        
-    //     // Configure l'Intersection Observer pour récupérer tous les éléments sur la page affiché
-    //     var observer = new IntersectionObserver(function (entries) {
-    //         entries.forEach(entry => {
-    //             if (entry.isIntersecting) {
-                    
-    //             }
-    //         });
-    //     }, {
-    //         root: gameW,
-    //         rootMargin: '-1px -1px -1px -1px', 
-    //         threshold: 0.1
-    //     });
-        
-    //     // Observer chaque élément
-    //     elements.forEach(element => {
-    //         observer.observe(element);
-    //     });
+
 
     //-----------------------------------COLISION--------------------------------------------
     elements.forEach(element => {
         
-        //console.log(element);
 
         if (element.classList[0]=="END") {//Rebon sur la plateforme
             elementRect = element.getBoundingClientRect();
@@ -411,15 +390,27 @@ function rafraichissement(){
 
         if (element.classList[0]=="plateforme1") {//Rebon sur la plateforme
             elementRect = element.getBoundingClientRect();
+            // console.log(element);
+
+            // console.log(persoRect.left < elementRect.right);
+            // console.log(persoRect.right > elementRect.left);
+            // console.log(persoRect.bottom > elementRect.top-2);
+            // console.log(persoRect.bottom < elementRect.top+2);
+            // console.log(persoRect.top < elementRect.bottom + element.clientHeight);
+
+
+
             if ((persoRect.right > elementRect.left) 
                 && (persoRect.left < elementRect.right)
                 && (persoRect.bottom > elementRect.top-2)
                 && (persoRect.bottom < elementRect.top+2)
                 && (persoRect.top < elementRect.bottom + element.clientHeight)
                 ) {
-                    hightJump = persoRect.bottom;
-                    posInf = persoRect.bottom;
-                    console.log(hightJump);
+                    if (!(hightJump > (posInf - (0.2 * window.innerHeight)))){
+                        hightJump = persoRect.bottom;
+                        posInf = persoRect.bottom;
+                        // console.log(hightJump);
+                     }
             }
         }
         if (element.classList[0]=="plateforme2") {//destruction de la plateforme
@@ -434,7 +425,7 @@ function rafraichissement(){
 
             }
         }
-        if (element.classList[0]=="monstre2" || element.classList[0]=="monstre2" ) {//fin de la partie
+        if (element.classList[0]=="monstre1" || element.classList[0]=="monstre2" ) {//fin de la partie
             elementRect = element.getBoundingClientRect();
             if ((persoRect.right > elementRect.left) 
                 && (persoRect.left < elementRect.right)
@@ -453,7 +444,7 @@ function rafraichissement(){
                 && (persoRect.top < elementRect.bottom )
                 ) {
                     elements.forEach(element => {
-                        if (element.classList[0]=="monstre2" || element.classList[0]=="monstre2" ) {
+                        if (element.classList[0]=="monstre1" || element.classList[0]=="monstre2" ) {
                             gameW.removeChild(element);
                         }
 
@@ -472,7 +463,7 @@ function rafraichissement(){
                 ) {
                     hightJump = persoRect.bottom - 20*unPourcent;
                     posInf = persoRect.bottom;
-                    console.log(hightJump);
+                    // console.log(hightJump);
             }
         }
         
@@ -482,12 +473,13 @@ function rafraichissement(){
 
     // -------------------------------------DEPLACEMENT PERSO-------------------------------
 
-    var isOverflowing = persoRect.right > gameWRect.right || persoRect.left < gameWRect.left;
-    if (!isOverflowing) {
+    var isOverflowingR = persoRect.right > gameWRect.right ;
+    var isOverflowingL =  persoRect.left < gameWRect.left;
+    
 
-        if (moveR) {
+        if (moveR && !isOverflowingR) {
 
-            listImput.push("r");
+            // listImput.push("r");
             var pos = getComputedStyle(perso);// on récupère toutes les données CSS de perso
                     
                 pos = pos['left'];// on récupère la donné qui nous interrese
@@ -495,9 +487,9 @@ function rafraichissement(){
                 pos += 4*unPourcent;
                 perso.style.setProperty('left', pos );// on déplace le perso
             }
-        else if (moveL) {
+        else if (moveL && !isOverflowingL) {
 
-            listImput.push("l");
+            // listImput.push("l");
             var pos = getComputedStyle(perso);// on récupère toutes les données CSS de perso
                 pos = pos['left'];// on récupère la donné qui nous interrese
                 pos = parseFloat(pos);// on enlève le px
@@ -505,13 +497,13 @@ function rafraichissement(){
                 perso.style.setProperty('left', pos );// on déplace le perso
          }
             
-         else listImput.push("n");
+        //  else listImput.push("n");
 
-    }
+    
     //  ------------ SAUT ------------------
     // un saut fait 20% de hauteur de la page
     if (hightJump > (posInf - (0.2 * window.innerHeight))) {
-        listImput.push("u");
+        // listImput.push("u");
         var pos = getComputedStyle(perso);// on récupère toutes les données CSS de perso
                 pos = pos['bottom'];// on récupère la donné qui nous interrese
                 pos = parseFloat(pos);// on enlève le px
@@ -542,7 +534,7 @@ function rafraichissement(){
         
     }
     else {
-        listImput.push("d");
+        // listImput.push("d");
         var pos = getComputedStyle(perso);// on récupère toutes les données CSS de perso
                 pos = pos['bottom'];// on récupère la donné qui nous interrese
                 pos = parseFloat(pos);// on enlève le px

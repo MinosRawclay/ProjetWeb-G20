@@ -26,11 +26,11 @@ function initGamePage(){
         // Recuperez les donnees envoyees depuis l'iframe
         var donnees = event.data;
         var code = donnees.split(':');
-            console.log("test1:");
-            console.log(code[0]);
+            // console.log("test1:");
+            // console.log(code[0]);
             
 
-             console.log(donnees);
+            //  console.log(donnees);
             if (code[0]==999) {
                 console.log('defaite');
                 var popup  = document.getElementById("popupGameDeath")
@@ -107,7 +107,7 @@ async function delayMess() {
 
 function reload()
 {
-    console.log("reset");
+    // console.log("reset");
     iframeW.location.reload();    
     var popup  = document.getElementById("popupGameDeath")
     popup.style.display="none";

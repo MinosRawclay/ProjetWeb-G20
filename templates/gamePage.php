@@ -45,10 +45,7 @@ include_once("libs/modele.php");
     <img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">   
     <img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
     <iframe id="gameiframe" src="templates/gameframe.php?nomniv=<?php echo valider("nomniv")?>"  scrolling="no" ></iframe>
-    <form role="form" action="index.php" methode="get">
-      <input type="hidden" name="view" value="personalisation_perso">
-      <button class="BOUTTONtexture" type="submit" name="action" >Créer un pack de textures</button>
-    </form>
+    
 </div>
 
 <div id=popupGameDeath>
@@ -70,8 +67,15 @@ include_once("libs/modele.php");
         
 </div>
 
+<div class="select">
+    <form role="form" action="index.php" methode="get">
+      <input type="hidden" name="view" value="personalisation_perso">
+      <button class="BOUTTONtexture" type="submit" name="action" >Créer un pack de textures</button>
+    </form>
+</div>
 
-<div id="select">
+<div class="select">
+   
     <?php
 
         
