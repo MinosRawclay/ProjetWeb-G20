@@ -78,8 +78,9 @@ div#popupGameDeath input {
 
 div.affichage {
     position: relative;
+    width: 20%;
+    padding: 1%;
 
-    padding-top: 1%;
     display: flex;
 
     border: 0.2rem solid black;
@@ -91,6 +92,14 @@ div.affichage {
     align-items: center;
     flex-direction: column;
     align-content: space-evenly;
+}
+
+.orga5{
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+
 }
 
 .orga {
@@ -174,7 +183,13 @@ div.score {
     position: relative;
     background-color: lightgray;
     border: 1px solid black;
-    border-radius: 25%;
+    border-radius: 7%;
+    margin: 5px 3% 5px 5px;
+    padding: 5%;
+    font-size: 150%;
+}
+.score>h2 {
+    text-decoration: underline;
 }
 
 .bouttonRetirerAmi {
@@ -191,6 +206,16 @@ div.score {
 
 .bouttonDemandeAmiN {
     color: black;
+}
+
+.orga4 {
+    display: flex;
+    align-items: center;
+    align-content: space-evenly;
+    height: 80%;
+    width: 100%;
+    margin-top: 10%;
+    justify-content: center;
 }
 
 /*------------------------IFRAME-------------------*/

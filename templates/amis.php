@@ -20,14 +20,14 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 
     <form role="form" action="controleur.php" methode="get">
       <div class="form-group">
-        <label for="email">Login</label>
+        <label for="email">Pseudo</label>
         <input type="text" class="form-control" id="email" name="login" value="" >
       </div>
       <button type="submit" name="action" value="demande_ami" class="btn btn-default">Faire une demande d'ami</button>
     </form>
 
 
-    
+    <div class="orga5">
     <div class="affichage demande">
   <?php 
     // echo "test0--";
@@ -38,6 +38,10 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
   //  print_r($amis);
   //  echo "test2--";
 
+
+
+
+if (count($amis) != 0){
   foreach ($amis as $ami) {
     echo '<div class="holderAmi">';
     echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
@@ -51,9 +55,12 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     </form>';
     echo '</div>';
   }
-
-  $amis = listerAmis($pseudo);
- 
+  } else echo "<p>Vous n'avez pas de demande en attente</p>";
+  ?>
+</div>
+<div class="affichage blocage">
+  <?php $amis = listerAmis($pseudo);
+  if (count($amis) != 0){
   foreach ($amis as $ami) {
     echo '<div class="holderAmi">';
     echo "<p class='ami'>". $ami["pseudo_ami"] ."</p>";  
@@ -66,8 +73,13 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
     <button type="submit" name="action" value="bloqueAmi" class="bouttonbloqueAmi">Bloquer l ami</button>
     </form>';
     echo '</div>';
+  }}
+  else {
+    echo "<p>Vous n'avez pas d'ami</p>";
   }
   ?>
+  </div>
+  </div>
 
 
   
