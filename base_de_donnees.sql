@@ -45,7 +45,7 @@ FOREIGN KEY (NomAuteur) REFERENCES joueur(pseudo)
 CREATE TABLE run (
 	pseudo VARCHAR(20),
     id_niveau INTEGER,
-	temps INTEGER NOT NULL,
+	temps FLOAT NOT NULL,
     commandes VARCHAR(1000),
 PRIMARY KEY (pseudo, id_niveau),
 FOREIGN KEY (pseudo) REFERENCES joueur(pseudo),

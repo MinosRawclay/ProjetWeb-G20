@@ -76,6 +76,59 @@ div#popupGameDeath input {
 
 }
 
+
+div#popupGameVictory {
+    
+    display: none;
+    position: absolute;
+
+    top : 30%;
+    left: 29%;
+
+    height: 25%;
+    width: 50%;
+
+    justify-content: center;
+    align-content: center;
+
+    background-color: aliceblue;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+    border-radius: 3rem;
+    
+    border: 1rem solid #32a1ce;
+}
+
+div#popupGameVictory input {
+
+    position: absolute;
+
+    top : 40%;
+   
+
+    height: 25%;
+    width: 20%;
+
+    color: black;
+
+    background: #32a1ce;
+    border: #32a1ce;
+    border-radius: 3rem;
+
+}
+
+input#btnVN {
+    left: 60%;
+}
+
+input#btnVO {
+    left: 20%;
+}
+
+
 div.affichage {
     position: relative;
     width: 20%;

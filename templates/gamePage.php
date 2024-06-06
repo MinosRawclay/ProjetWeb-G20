@@ -55,7 +55,21 @@ include_once("libs/modele.php");
         <p>Vous etes mort.  Voulez vous recommencer?</p>
         
         <input type="button" value="retry" onclick="reload()">
-    </div>
+</div>
+
+<div id=popupGameVictory>
+        <p id=pPopopGV></p>
+        <form action="controleur.php" method="get">
+            <input type="hidden" name="action" value="enregistrerTemps">
+            <input type="hidden" name="niveau" value="<?php echo valider("nomniv")?>">
+            <input id="inputH" type="hidden" name="temps" value="0">
+            <input id="btnVO" type="submit" value="OUI">
+            <input id="btnVN" type="button" value="NON" onclick="DivStyleNono()">
+        </form>
+        
+        
+</div>
+
 
 <div id="select">
     <?php

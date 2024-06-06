@@ -178,6 +178,21 @@ session_start();
 						}
 					}
 				}
+
+				case 'enregistrerTemps' :
+
+					if ($niv = valider("niveau")) 
+						if ($pseudo = valider("pseudo","SESSION")) 
+							if ($temp = valider("temps")) {
+								echo $niv.$pseudo.$temp;
+								enregistreTemp($niv,$pseudo,$temp); 
+							}
+						
+					
+					
+	
+					break;
+
 				$addArgs = "?view=accueil";
 			break;
 

@@ -1,4 +1,4 @@
-var  gameW, perso, texture, trueTexture,moveL,moveR,posInf,posSupMax,hightJump, target, elements, listImput, IDrafraicissement,listImputFantome;
+var  gameW, perso, texture, trueTexture,moveL,moveR,posInf,posSupMax,hightJump, target, elements, listImput, IDrafraicissement,listImputFantome, temp;
 function initIframe (){
 
     console.log('initIframe');
@@ -21,7 +21,7 @@ function initIframe (){
     });
     //envoit a la page parente la confirmation d'inicialisation
     var lienIframe = window.location.href
-    window.parent.postMessage("message : inicialisation terminer",lienIframe);
+    window.parent.postMessage("donnee : inicialisation terminer",lienIframe);
 
 }
 
@@ -32,11 +32,18 @@ function endGame() {
     console.log(listImput);
     console.log("end Game");
     var lienIframe = window.location.href
-    window.parent.postMessage(999,lienIframe);
+    window.parent.postMessage("999:GAMEOVER",lienIframe);
 
 
 }
 
+function EndVictory() {
+    var tempFin =  Date.now();
+    console.log('victoire');
+
+    var lienIframe = window.location.href
+    window.parent.postMessage("888:"+(tempFin-temp)/1000,lienIframe);
+}   
 
 
 
@@ -110,7 +117,7 @@ function remplirniv() {
                     var child = document.createElement('div');
 
                     // Ajout d'un id à l'élément enfant
-                    child.classList.add ("END") ; 
+                    child.classList.add ("END","GameImgHolder") ; 
 
                     // Ajout du nœud enfant au nœud parent
                     gameW.appendChild(child);
@@ -318,6 +325,9 @@ function Start2 (){
     posInf = persoRect.bottom;
     posSupMax = persoRect.bottom;
     listImput = [];
+    temp = Date.now();
+    console.log(temp);
+
     IDrafraicissement =  setInterval(rafraichissement, 10);//fréquence de rafraichissemnt du jeu
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -386,6 +396,19 @@ function rafraichissement(){
     elements.forEach(element => {
         
         //console.log(element);
+
+        if (element.classList[0]=="END") {//Rebon sur la plateforme
+            elementRect = element.getBoundingClientRect();
+            if ((persoRect.right > elementRect.left) 
+                && (persoRect.left < elementRect.right)
+                && (persoRect.bottom > elementRect.top)
+                && (persoRect.top < elementRect.bottom )
+                ) {
+                    EndVictory();
+            }
+        }
+
+
         if (element.classList[0]=="plateforme1") {//Rebon sur la plateforme
             elementRect = element.getBoundingClientRect();
             if ((persoRect.right > elementRect.left) 

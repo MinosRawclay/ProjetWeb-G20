@@ -44,7 +44,15 @@ function getListNiv($pseudo) {
 	return parcoursRs(SQLSelect($sql));	
 }
 
+function enregistreTemp($niv,$pseudo,$temp) {
 
+	$sql = "SELECT idNiveau FROM annuaireNiveau WHERE Nom = '$niv'";
+	$idNiv = parcoursRs(SQLSelect($sql));
+	
+	$idNiv = $idNiv[0]["idNiveau"];
+	$sql = "INSERT INTO run VALUES ('$pseudo','$idNiv',$temp,NULL);";
+	return SQLInsert($sql);
+}
 
 
 function listerUtilisateurs($classe = "both")
@@ -75,7 +83,7 @@ function listerTexturePack() {
 
 function listerNiveau($nomNiveau){
 	$sql = "
-	SELECT * FROM $nomNiveau"  ;
+	SELECT * FROM $nomNiveau";
 	return parcoursRs(SQLSelect($sql));
 }
 
