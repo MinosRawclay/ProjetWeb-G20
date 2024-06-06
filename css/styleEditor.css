@@ -1,50 +1,102 @@
 
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 
 iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 80%;
-    border: 2px solid #000000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 80%;
+  border: 2px solid #000000;
 }
 
+
+#bandeauG {
+position: absolute;
+left: 20%;
+top: 10%;
+height: 100%;
+width: 25%; 
+}
+
+
+.listElement {
+position: relative;
+width: 50%;
+height: 65%;
+display: flex;
+align-items: center;
+flex-direction: column;
+align-content: space-evenly;
+justify-content: space-evenly;
+
+}
+
+.bouttonEdition {
+justify-content: space-around;
+
+
+
+
+}
+
+.bouttonEdition > input {
+background: #0c111a;
+width: 20%;
+}
+
+
 .draggable {
-    width: 200px;
-    height: 20px;
-    text-align: center;
-    background: white;
-  }
+  width: 30%;
+  height: 10%;
+  text-align: center;
+  background: white;
+}
 
-  .dropzone {
-    width: 10%;
-    height: 90%;
-    background: blueviolet;
-  
-    border: solid #000000;
-  }
+.draggable > img {
+height: 100%;
+width: 100%;
+object-fit: contain;
+background: #0c111a;
+}
 
-  .ligne {
-    width: 100%;
-    height: 10%;
-    display: flex;
+.dropzone > img {
+height: 100%;
+width: 100%;
+object-fit: contain;
+background: #0c111a;    
 
-    align-content: center;
+}
 
-  }
 
-  #trashCan{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    height: 15%;
-    width: 15%;
-    background-color: aliceblue;
-  }
+.dropzone {
+  width: 10%;
+  height: 90%;
+  background: rgb(12, 17, 26);
+
+  border: solid #979797;
+}
+
+.ligne {
+  width: 100%;
+  height: 10%;
+  display: flex;
+
+  align-content: center;
+
+}
+
+#trashCan{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 15%;
+  width: 15%;
+  background-color: aliceblue;
+}

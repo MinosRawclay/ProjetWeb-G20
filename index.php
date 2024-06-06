@@ -23,6 +23,8 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	{
 		$view = $_GET["view"]
 	}*/
+	
+
 
 	// S'il est vide, on charge la vue accueil par défaut
 	if (!$view) $view = "accueil"; 
@@ -87,11 +89,3 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 
 	
 ?>
-
-
-
-
-
-
-
-

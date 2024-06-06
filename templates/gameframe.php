@@ -2,6 +2,7 @@
 
 <?php
 
+// auteur Raphael
 
 
 
@@ -32,11 +33,11 @@ include_once("../libs/modele.php");
 <!--Nous somme dans la page du jeu -->
 
 
-
 <script>
     function getNiv(){
         console.log("test");
-        return JSON.parse ('<?php   echo json_encode (listerNiveau("niveauTest"));   ?>');
+        return JSON.parse ('<?php  $nomniv = $_REQUEST["nomniv"];
+        echo json_encode (listerNiveau($nomniv));   ?>');
     }
 </script>
 <script src="../js/iframeScript.js?v=<?php echo time(); ?>"></script>

@@ -13,6 +13,10 @@ html, body {
     background-size: 100px 100px;
     background-position: 0 0, 70px 50px;
     */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    background-size: cover; /* Adapte la taille de l'image pour couvrir toute la page */
+    background-position: center; /* Centre l'image */
+
     color: rgb(189, 162, 75);
 
 }
@@ -28,54 +32,133 @@ html, body {
 }
 
 
+.btnChoixNiv {
+    width: 100px;
+    height: 50px;
+}
+
+.ograListeNiv {
+    justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  flex-direction: column;
+}
+
+
+
+#pPopupGV {
+    position: relative;
+    top: -60%;
+}
+
+
+
 
 div#popupGameDeath {
     
     display: none;
     position: absolute;
-
-    top : 30%;
+    top: 30%;
     left: 29%;
-
     height: 25%;
-    width: 20%;
-
+    width: 40%;
     justify-content: center;
     align-content: center;
-
-    background-color: aliceblue;
+    background-color: #0c111a;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
-
     border-radius: 3rem;
-    
-    border: 1rem solid #32a1ce;
+    border: 1rem solid #c1a959;
 }
 
 div#popupGameDeath input {
 
     position: absolute;
+    top: 60%;
+  left: 40%;
+  height: 25%;
+  width: 20%;
+  color: #c1a959;
+  background: #0a1019;
+
+  border-radius: 3rem;
+  border: 2px solid #c1a959;
+
+}
+
+
+div#popupGameVictory {
+    display: none;
+    position: absolute;
+  top: 35%;
+  left: 29%;
+  height: 25%;
+  width: 40%;
+  justify-content: start;
+  align-content: center;
+  background-color: #0c111a;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  border-radius: 3rem;
+  border: 1rem solid #c1a959;
+}
+
+
+
+div#ograListeNiv {
+    position: absolute;
+    width: 80%;
+    left: 20%;
+    height: 80%;
+    display: flex;
+    align-content: space-around ;
+    justify-content: space-around;
+}
+
+div#ograListeNiv input {
+    width: 10%;
+}
+
+
+div#popupGameVictory input {
+
+    position: absolute;
 
     top : 40%;
-    left: 40%;
+   
 
     height: 25%;
     width: 20%;
 
-    color: black;
-
-    background: #32a1ce;
-    border: #32a1ce;
+    color: #c1a959;
+    background: #0a1019;
+  
     border-radius: 3rem;
+    border: 2px solid #c1a959;
 
 }
 
+input#btnVN {
+    left: 60%;
+}
+
+input#btnVO {
+    left: 20%;
+}
+
+
 div.affichage {
     position: relative;
+    width: 20%;
+    padding: 1%;
 
-    padding-top: 1%;
     display: flex;
 
     border: 0.2rem solid black;
@@ -87,6 +170,14 @@ div.affichage {
     align-items: center;
     flex-direction: column;
     align-content: space-evenly;
+}
+
+.orga5{
+    margin: 1%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+
 }
 
 .orga {
@@ -107,11 +198,11 @@ div#affichage {
     
 }
 
-div#select {
+div.select {
     
     display: flex;
     height: 10%;
-    width: 100%;
+    width: 25%;
 
     justify-content: center;
     align-content: center;
@@ -164,6 +255,45 @@ div.orga2 {
 
 div.orga3 {
     padding-top: 25%;
+}
+
+div.score {
+    position: relative;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 7%;
+    margin: 5px 3% 5px 5px;
+    padding: 5%;
+    font-size: 150%;
+}
+.score>h2 {
+    text-decoration: underline;
+}
+
+.bouttonRetirerAmi {
+    color: black;
+}
+
+.bouttonbloqueAmi {
+    color: black;
+}
+
+.bouttonDemandeAmiY {
+    color: black;
+}
+
+.bouttonDemandeAmiN {
+    color: black;
+}
+
+.orga4 {
+    display: flex;
+    align-items: center;
+    align-content: space-evenly;
+    height: 80%;
+    width: 100%;
+    margin-top: 10%;
+    justify-content: center;
 }
 
 /*------------------------IFRAME-------------------*/
@@ -228,6 +358,14 @@ div.GameImgHolder > img {
     bottom: 45%;
     left: 40%;
 }
+
+.END{   
+    height: 1%;
+    width: 100%;
+    background-color: rgb(83, 2, 2);
+    position: absolute;
+}
+
 
 .plateforme1{
     height: 5%;

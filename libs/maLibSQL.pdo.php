@@ -12,6 +12,39 @@ include_once "config.php";
  */
 
 
+ /**
+ * Exécuter une requête CREATE TABLE 
+ * @param string $sql
+ * @pre Les variables  $BDD_login, $BDD_password $BDD_chaine doivent exister
+ * @return Renvoie 0
+ */
+function SQLCreateTable ($sql){
+	global $BDD_host;
+	global $BDD_base;
+	global $BDD_user;
+	global $BDD_password;
+	
+	try {
+		$dbh = new PDO("mysql:host=$BDD_host;dbname=$BDD_base", $BDD_user, $BDD_password);
+	} catch (PDOException $e) {
+		die("<font color=\"red\">SQLInsert: Erreur de connexion : " . $e->getMessage() . "</font>");
+	}
+
+	$dbh->exec("SET CHARACTER SET utf8");
+	$res = $dbh->query($sql);
+	if ($res === false) {
+		$e = $dbh->errorInfo(); 
+		die("<font color=\"red\">SQLInsert: Erreur de requete : " . $e[2] . "</font>");
+	}
+
+	$dbh = null; 
+	return 0;
+
+ }
+
+
+
+
 /**
  * Exécuter une requête UPDATE. Renvoie le nb de modifs ou faux si pb
  * On testera donc avec === pour différencier faux de 0 

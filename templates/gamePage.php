@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 
+// auteur Raphael
 
 
 
@@ -20,11 +21,15 @@ include_once("libs/maLibUtils.php");
 include_once("libs/modele.php");
 
 
-// info pour moi 17/05 20:30-21:30 && 22:30-00:00
-// 18/05 13:30-15:00  17:00-19:00
-// +2h 26/05
 
 ?>
+
+<style>
+    html, body {
+    background-image: url("ressources/fondetoile.png");
+    }
+</style>
+
 
 <script src="js/pageGameScript.js"></script>
 
@@ -32,24 +37,43 @@ include_once("libs/modele.php");
 
 
 
-
- <img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
-    
-<img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
-    <!-----------------------BODY--------------------------------->
+<!-----------------------BODY--------------------------------->
 <body onload="initGamePage()">
 <div id="affichage">
-<iframe id="gameiframe" src="templates/gameframe.php"  scrolling="no" ></iframe>
-    <input type="button" value="test" onclick="reload()">
+    <img class="right" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">   
+    <img class="left" src="ressources/images/perso/persodoodle.png" alt="doodle perso right to left">
+    <iframe id="gameiframe" src="templates/gameframe.php?nomniv=<?php echo valider("nomniv")?>"  scrolling="no" ></iframe>
+    
 </div>
 
 <div id=popupGameDeath>
         <p>Vous etes mort.  Voulez vous recommencer?</p>
         
         <input type="button" value="retry" onclick="reload()">
-    </div>
+</div>
 
-<div id="select">
+<div id=popupGameVictory>
+        <p id=pPopopGV></p>
+        <form action="controleur.php" method="get">
+            <input type="hidden" name="action" value="enregistrerTemps">
+            <input type="hidden" name="niveau" value="<?php echo valider("nomniv")?>">
+            <input id="inputH" type="hidden" name="temps" value="0">
+            <input id="btnVO" type="submit" value="OUI">
+            <input id="btnVN" type="button" value="NON" onclick="DivStyleNono()">
+        </form>
+        
+        
+</div>
+
+<div class="select">
+    <form role="form" action="index.php" methode="get">
+      <input type="hidden" name="view" value="personalisation_perso">
+      <button class="BOUTTONtexture" type="submit" name="action" >Créer un pack de textures</button>
+    </form>
+</div>
+
+<div class="select">
+   
     <?php
 
         
@@ -83,10 +107,7 @@ include_once("libs/modele.php");
     <input type="button" value="changer de texture" onclick="reload()">
                             
 </div>
-<form role="form" action="index.php" methode="get">
-      <input type="hidden" name="view" value="personalisation_perso">
-      <button class="BOUTTONtexture" type="submit" name="action" >Créer un pack de textures</button>
-    </form>
+
 </body>
 <!--------------------------FIN BODY-------------------------->
 

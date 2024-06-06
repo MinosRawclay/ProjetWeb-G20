@@ -149,6 +149,55 @@ session_start();
 				}
 				$addArgs = "?view=gamePage";
 			break;
+
+			case 'nouveauNiveau' :		
+				if (valider("texte")){
+					$val = json_decode($_REQUEST["texte"]);
+					print_r($val);
+					if ($pseudo = valider("pseudo","SESSION"))
+					{	
+						 echo "____Test1:";
+						 print_r( $val[0]);
+						 echo "____Test2:";
+						 print_r( $val[0]->nomAuteur);
+						 print_r (getLastIndexAnnuaire());
+						$i=0;
+						if ($pseudo == $val[0]->nomAuteur) {
+						foreach ($val as $element) {
+
+							if ($i==0) {
+								$nomNiv = $element->nom;
+								AjouterNivTable($pseudo,$nomNiv);
+								$i=1;
+							}
+						else {
+								AjouterLigneNiv($nomNiv,$i,$element->TypeEle,$element->Xpos,$element->Ypos);
+								$i=$i+1;
+							}
+						} 
+						}
+					}
+				}
+
+				case 'enregistrerTemps' :
+
+					if ($niv = valider("niveau")) 
+						if ($pseudo = valider("pseudo","SESSION")) 
+							if ($temp = valider("temps")) {
+								echo $niv.$pseudo.$temp;
+								enregistreTemp($niv,$pseudo,$temp); 
+							}
+						
+					
+					
+	
+					break;
+
+				$addArgs = "?view=accueil";
+			break;
+
+
+
 		}
 
 	}
