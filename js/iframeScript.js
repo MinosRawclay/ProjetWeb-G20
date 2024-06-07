@@ -408,12 +408,12 @@ function rafraichissement(){
                 && (persoRect.bottom < elementRect.top+2)
                 && (persoRect.top < elementRect.bottom + element.clientHeight)
                 ) {
-                    console.log("plateforme1");
+                    // console.log("plateforme1");
                     if (dateNow - tempJump > 500){
                         tempJump = dateNow;
                         hightJump = persoRect.bottom;
                         posInf = persoRect.bottom;
-                        console.log(hightJump);
+                        // console.log(hightJump);
                      }      
             }
         }
@@ -465,12 +465,12 @@ function rafraichissement(){
                 && (persoRect.bottom < elementRect.top+2)
                 && (persoRect.top < elementRect.bottom + element.clientHeight)
                 ) {
-                    console.log("trampoline");
+                    // console.log("trampoline");
                     if (dateNow - tempJump > 500){
                         tempJump = dateNow;
                         hightJump = persoRect.bottom ;
                         posInf = persoRect.bottom - (0.2 * window.innerHeight);
-                        console.log(hightJump);
+                        // console.log(hightJump);
                      }   
             }
         }
