@@ -1,4 +1,4 @@
-var  gameW, perso, texture, trueTexture,moveL,moveR,posInf,posSupMax,hightJump, target, elements, listImput, IDrafraicissement,listImputFantome, temp;
+var  gameW, perso, texture, trueTexture,moveL,moveR,posInf,posSupMax,hightJump, target, elements, listImput, IDrafraicissement,listImputFantome, temp, tempJump;
 function initIframe (){
 // auteur Raphael
 
@@ -79,7 +79,7 @@ function verifTexture(){
     else  trueTexture["monstre2"] = texture["monstre2"];   
     
     //trapoline
-    if (! texture["trampoline"]) trueTexture["trampoline"] = "../ressources/images/object/trapoline.png";
+    if (! texture["trampoline"]) trueTexture["trampoline"] = "../ressources/images/object/trampoline.png";
     else  trueTexture["trampoline"] = texture["trampoline"]; 
     //bombe
     if (! texture["bombe"]) trueTexture["bombe"] = "../ressources/images/object/bombe.png";
@@ -328,6 +328,7 @@ function Start2 (){
     posSupMax = persoRect.bottom;
     listImput = [];
     temp = Date.now();
+    tempJump = 0;
     // console.log(temp);
 
     IDrafraicissement =  setInterval(rafraichissement, 10);//fréquence de rafraichissemnt du jeu
@@ -369,7 +370,7 @@ function rafraichissement(){
     var gameWRect = gameW.getBoundingClientRect();
     var unPourcent = window.innerHeight * 0.002;
     var persoRect = perso.getBoundingClientRect();
-
+    var dateNow = Date.now();
     elements = document.querySelectorAll('.GameImgHolder');//touts les éléments de la page
 
 
@@ -407,11 +408,13 @@ function rafraichissement(){
                 && (persoRect.bottom < elementRect.top+2)
                 && (persoRect.top < elementRect.bottom + element.clientHeight)
                 ) {
-                    if (!(hightJump > (posInf - (0.2 * window.innerHeight)))){
+                    console.log("plateforme1");
+                    if (dateNow - tempJump > 500){
+                        tempJump = dateNow;
                         hightJump = persoRect.bottom;
                         posInf = persoRect.bottom;
-                        // console.log(hightJump);
-                     }
+                        console.log(hightJump);
+                     }      
             }
         }
         if (element.classList[0]=="plateforme2") {//destruction de la plateforme
@@ -454,7 +457,7 @@ function rafraichissement(){
             }
 
         }
-        if (element.classList[0]=="trampoline") {//fin de la partie
+        if (element.classList[0]=="trampoline") {//trampoline
             elementRect = element.getBoundingClientRect();
             if ((persoRect.right > elementRect.left) 
                 && (persoRect.left < elementRect.right)
@@ -462,9 +465,13 @@ function rafraichissement(){
                 && (persoRect.bottom < elementRect.top+2)
                 && (persoRect.top < elementRect.bottom + element.clientHeight)
                 ) {
-                    hightJump = persoRect.bottom - 20*unPourcent;
-                    posInf = persoRect.bottom;
-                    // console.log(hightJump);
+                    console.log("trampoline");
+                    if (dateNow - tempJump > 500){
+                        tempJump = dateNow;
+                        hightJump = persoRect.bottom ;
+                        posInf = persoRect.bottom - (0.2 * window.innerHeight);
+                        console.log(hightJump);
+                     }   
             }
         }
         
